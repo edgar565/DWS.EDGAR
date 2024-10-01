@@ -41,17 +41,21 @@ public class  YoutuberService {
                 .max(Comparator.comparingInt(Youtuber::numberFollower))
                 .stream().findFirst().orElse(null);*/
     }
+
     public double averageVideos() {
         return youtubers.stream().mapToInt(Youtuber::numberVideo).average().getAsDouble();
     }
+
     public List<Youtuber> youtubers2013() {
         return youtubers.stream()
                 .filter(youtuber -> youtuber.dateVideo().getYear() == 2013)
                 .collect(Collectors.toList());
     }
+
     public List<Youtuber> youtubersMoreInCome() {
         return youtubers.stream().sorted(Comparator.comparingDouble(Youtuber::estimatedIncome).reversed()).limit(3).collect(Collectors.toList());
     }
+
     public Map<Integer, List<Youtuber>> youtubersGroupByYear(){
         return youtubers.stream().collect(Collectors.groupingBy(youtuber -> youtuber.dateVideo().getYear()));
     }
