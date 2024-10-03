@@ -1,4 +1,7 @@
 package org.edgar;
+
+import org.edgar.entities.YoutuberService;
+
 public class Main {
     public static void main(String[] args) {
         YoutuberService youtuberService = new YoutuberService();

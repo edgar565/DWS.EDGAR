@@ -1,4 +1,4 @@
-package org.edgar;
+package org.edgar.entities;
 
 import java.time.LocalDate;
 

@@ -1,5 +1,7 @@
 package org.edgar;
 
+import org.edgar.entities.Youtuber;
+import org.edgar.entities.YoutuberService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
