@@ -33,4 +33,22 @@ public class Animal {
         this.fechaIngreso = fechaIngreso;
         this.adoptado = adoptado;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", especie='" + especie + '\'' +
+                ", edad=" + edad +
+                ", sexo='" + sexo + '\'' +
+                ", fechaIngreso='" + fechaIngreso + '\'' +
+                ", adoptado='" + adoptado + '\'' +
+                '}';
+    }
+
 }
