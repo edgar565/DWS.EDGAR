@@ -14,7 +14,7 @@ public class  YoutuberService {
     private List<Youtuber> youtubers;
 
     public void createYoutubers() {
-        Path path = Path.of("/home/edgsannic/IdeaProjects/DWS.EDGAR/tema2.P1/src/main/resources/youtubers.csv");
+        Path path = Path.of("/home/edgsannic/IdeaProjects/DWS.EDGAR/tema2P1/src/main/resources/youtubers.csv");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try (Stream<String> lines = Files.lines(path)) {
             youtubers = lines

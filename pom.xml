@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>tema2.P1</module>
+        <module>tema2P1</module>
     </modules>
 
     <properties>
