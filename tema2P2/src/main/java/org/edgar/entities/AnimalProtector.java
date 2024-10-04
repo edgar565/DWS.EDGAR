@@ -10,8 +10,8 @@ public class AnimalProtector {
     @JacksonXmlElementWrapper(localName = "animals")
     @JacksonXmlProperty(localName = "animal")
     List<Animal> animals;
-
-    public AnimalProtector() {
+    public AnimalProtector(List<Animal> animales) {
+        this.animals = animales;
     }
 
     public List<Animal> getAnimals() {
@@ -20,10 +20,6 @@ public class AnimalProtector {
 
     public void setAnimals(List<Animal> animals) {
         this.animals = animals;
-    }
-
-    public AnimalProtector(List<Animal> animales) {
-        this.animals = animales;
     }
 
     public void addAnimal(Animal animal) {
