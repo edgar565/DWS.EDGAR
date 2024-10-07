@@ -1,0 +1,24 @@
+{
+  "animalShelter": {
+    "animals": [
+      {
+        "id": 1,
+        "name": "Luna",
+        "species": "Perro",
+        "age": 3,
+        "gender": "Hembra",
+        "entryDate": "2024-01-15",
+        "adopted": "Si"
+      },
+      {
+        "id": 2,
+        "name": "Miau",
+        "species": "Gato",
+        "age": 2,
+        "gender": "Macho",
+        "entryDate": "2024-01-15",
+        "adopted": "No"
+      }
+    ]
+  }
+}
