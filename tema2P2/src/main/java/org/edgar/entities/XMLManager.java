@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class XMLManager {
-    private static final Path path = Path.of("C:\\Users\\Dell\\IdeaProjects\\DWS.EDGAR\\tema2P2\\src\\main\\resources\\animals.xml");
+    private static final Path path = Path.of("tema2P2/src/main/resources/animals.xml");
 
     public List<Animal> readXML() {
         try{
