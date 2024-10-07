@@ -1,6 +1,15 @@
 package org.edgar.entities;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Animal {
     @JacksonXmlProperty(localName = "id")
@@ -24,31 +33,16 @@ public class Animal {
     @JacksonXmlProperty(localName = "adopted")
     private String adopted;
 
-    public Animal(String id, String name, String species, int age, String gender, String entryDate, String adopted) {
-        this.id = id;
-        this.name = name;
-        this.species = species;
-        this.age = age;
-        this.gender = gender;
-        this.entryDate = entryDate;
-        this.adopted = adopted;
-    }
-
-    public String getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "Animal{" +
                 "id='" + id + '\'' +
-                ", nombre='" + name + '\'' +
-                ", especie='" + species + '\'' +
-                ", edad=" + age +
-                ", sexo='" + gender + '\'' +
-                ", fechaIngreso='" + entryDate + '\'' +
-                ", adoptado='" + adopted + '\'' +
+                ", name='" + name + '\'' +
+                ", species='" + species + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", entryDate='" + entryDate + '\'' +
+                ", adopted=" + adopted +
                 '}';
     }
-
 }

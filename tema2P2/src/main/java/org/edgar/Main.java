@@ -1,16 +1,18 @@
 package org.edgar;
 
 import org.edgar.entities.Animal;
-import org.edgar.entities.AnimalProtector;
+import org.edgar.entities.AnimalShelter;
 import org.edgar.entities.XMLManager;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        AnimalProtector animalProtector = new AnimalProtector(new ArrayList<>());
         Scanner scanner = new Scanner(System.in);
         XMLManager xmlManager = new XMLManager();
+        AnimalShelter animalShelter = new AnimalShelter(new ArrayList<>());
 
         boolean exit = false;
         while (!exit) {
@@ -25,13 +27,15 @@ public class Main {
             System.out.print("Elige una opción: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-
             switch (option) {
                 case 1:
-                    xmlManager.readXML().forEach(System.out::println);
+                    animalShelter.setAnimals(xmlManager.readXML());
                     System.out.println("Cargando datos de XML...");
+                    break;
                 case 2:
-
+                    xmlManager.writeXML(animalShelter);
+                    System.out.println("Guardando datos en XML...");
+                    break;
                 case 3:
                     System.out.print("ID: ");
                     String id = scanner.nextLine();
@@ -49,40 +53,33 @@ public class Main {
                     System.out.print("¿Adoptado? (Si/No): ");
                     String adopted = scanner.nextLine();
 
-                    Animal nuevoAnimal = new Animal(id, name, species, age, sex, entryDate, adopted);
-                    animalProtector.addAnimal(nuevoAnimal);
-                    System.out.println("Animal añadido con éxito.");
+                    Animal animal = new Animal(id, name, species, age, sex, entryDate, adopted);
+                    animalShelter.addAnimal(animal);
+                    System.out.println("Añadiendo animal...");
                     break;
-
                 case 4:
-                    System.out.print("Introduce el ID del animal a borrar: ");
-                    String idDel = scanner.nextLine();
-                    animalProtector.delAnimal(idDel);
-                    System.out.println("Animal borrado.");
+                    System.out.println("Por favor, introduce el ID del animal que quieres borrar: ");
+                    String idToDelete = scanner.nextLine();
+                    animalShelter.delAnimal(idToDelete);
+                    System.out.println("Borrando animal...");
                     break;
-
                 case 5:
-                    System.out.print("Introduce el ID del animal a consultar: ");
-                    String idSearch = scanner.nextLine();
-                    Animal animal = animalProtector.searchAnimal(idSearch);
-                    if (animal != null) {
-                        System.out.println(animal);
-                    } else {
-                        System.out.println("Animal no encontrado.");
-                    }
+                    System.out.println("Por favor, introduce el ID del animal que quieres consultar: ");
+                    String idToSearch = scanner.nextLine();
+                    Animal animalSearch = animalShelter.searchAnimal(idToSearch);
+                    System.out.println("Consultando animal...");
+                    System.out.println(animalSearch);
                     break;
-
                 case 6:
-                    System.out.println("Animales en la animalProtector:");
-                    System.out.println(animalProtector);
+                    System.out.println("Mostrando todos los animales...");
+                    animalShelter.getAnimals().forEach(System.out::println);
                     break;
-
                 case 7:
+                    System.out.println("Saliendo...");
                     exit = true;
                     break;
-
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opción incorrecta");
                     break;
             }
         }
