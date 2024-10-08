@@ -16,7 +16,7 @@ import java.util.List;
 
 @JacksonXmlRootElement(localName = "animalshelter")
 public class AnimalShelter {
-    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlElementWrapper(localName = "animals")
     @JacksonXmlProperty(localName = "animal")
     private List<Animal> animals;
     public void addAnimal(Animal animal) {

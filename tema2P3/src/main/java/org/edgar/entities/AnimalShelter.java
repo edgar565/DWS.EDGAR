@@ -1,5 +1,6 @@
 package org.edgar.entities;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -15,10 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 
-@JacksonXmlRootElement(localName = "animalShelter")
+@JsonRootName("animalshelter")
 public class AnimalShelter {
-
-    @JacksonXmlElementWrapper(localName = "animals")
+    @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "animal")
     private List<Animal> animals;
 

@@ -33,6 +33,7 @@ public class Animal {
     @JacksonXmlProperty(localName = "adopted")
     private String adopted;
 
+
     @Override
     public String toString() {
         return "Animal{" +

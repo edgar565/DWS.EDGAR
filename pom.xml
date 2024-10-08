@@ -11,6 +11,7 @@
     <modules>
         <module>tema2P1</module>
         <module>tema2P2</module>
+        <module>tema2P3</module>
     </modules>
 
     <properties>

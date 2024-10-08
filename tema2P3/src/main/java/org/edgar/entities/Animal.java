@@ -1,5 +1,6 @@
 package org.edgar.entities;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
+@JsonRootName("animal")
 public class Animal {
-    @JacksonXmlProperty(isAttribute = true)
     private String id;
     private String name;
     private String species;
@@ -20,8 +21,6 @@ public class Animal {
     private String sex;
     private String entryDate;
     private String adopted;
-
-
 
     @Override
     public String toString() {

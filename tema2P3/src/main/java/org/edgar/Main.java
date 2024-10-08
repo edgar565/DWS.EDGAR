@@ -29,7 +29,7 @@ public class Main {
             scanner.nextLine();
             switch (option) {
                 case 1:
-                    animalShelter.setAnimals(jsonManager.readJson());
+                    animalShelter.setAnimals(animalShelter.getAnimals());
                     System.out.println("Cargando datos de XML...");
                     break;
                 case 2:
