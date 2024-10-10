@@ -1,13 +1,13 @@
 <animalshelter>
   <animals>
     <animal>
-      <id>69</id>
+      <id>1</id>
       <name>ed</name>
       <species>ed</species>
       <age>5</age>
       <gender>ed</gender>
-      <entryDate>2023-10-08</entryDate>
-      <adopted>si</adopted>
+      <entryDate>2024-10-10</entryDate>
+      <adopted>true</adopted>
     </animal>
   </animals>
 </animalshelter>

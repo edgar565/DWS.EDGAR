@@ -1,11 +1,22 @@
 {
-  "animals" : [ {
-    "id" : "1",
-    "name" : "ed",
-    "species" : "ed",
-    "age" : 5,
-    "sex" : "s",
-    "entryDate" : "2023-10-08",
-    "adopted" : "no"
-  } ]
-}
+    "animals": [
+      {
+        "id": 1,
+        "name": "Luna",
+        "species": "Perro",
+        "age": 3,
+        "gender": "Hembra",
+        "entryDate": "2024-01-15",
+        "adopted": "true"
+      },
+      {
+        "id": 2,
+        "name": "Miau",
+        "species": "Gato",
+        "age": 2,
+        "gender": "Macho",
+        "entryDate": "2024-01-15",
+        "adopted": "false"
+      }
+    ]
+  }

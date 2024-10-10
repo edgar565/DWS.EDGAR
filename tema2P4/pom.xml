@@ -5,15 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.edgar</groupId>
-    <artifactId>DWS.EDGAR</artifactId>
+    <artifactId>tema2P4</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>tema2P1</module>
-        <module>tema2P2</module>
-        <module>tema2P3</module>
-        <module>tema2P4</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>

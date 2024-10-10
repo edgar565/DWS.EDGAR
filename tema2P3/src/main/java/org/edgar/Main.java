@@ -4,6 +4,7 @@ import org.edgar.entities.Animal;
 import org.edgar.entities.AnimalShelter;
 import org.edgar.entities.JsonManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,11 +30,11 @@ public class Main {
             scanner.nextLine();
             switch (option) {
                 case 1:
-                    animalShelter.setAnimals(animalShelter.getAnimals());
+                    animalShelter = jsonManager.readJson();
                     System.out.println("Cargando datos de XML...");
                     break;
                 case 2:
-                    jsonManager.writeJson(animalShelter);
+                    jsonManager.writeJson(animalShelter.getAnimals());
                     System.out.println("Guardando datos en XML...");
                     break;
                 case 3:
@@ -49,10 +50,9 @@ public class Main {
                     System.out.print("Sexo: ");
                     String sex = scanner.nextLine();
                     System.out.print("Fecha de ingreso (yyyy-MM-dd): ");
-                    String entryDate = scanner.nextLine();
+                    LocalDate entryDate = LocalDate.parse(scanner.nextLine());
                     System.out.print("¿Adoptado? (Si/No): ");
-                    String adopted = scanner.nextLine();
-
+                    Boolean adopted = Boolean.valueOf(scanner.nextLine());
                     Animal animal = new Animal(id, name, species, age, sex, entryDate, adopted);
                     animalShelter.addAnimal(animal);
                     System.out.println("Añadiendo animal...");

@@ -9,12 +9,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class XMLManager {
-    private static final Path path = Path.of("tema2P2/src/main/resources/animals.xml");
+    private static final Path path = Path.of("/home/edgsannic/IdeaProjects/DWS.EDGAR/tema2P2/src/main/resources/animals.xml");
 
-    public List<Animal> readXML() {
+    public AnimalShelter readXML() {
         try{
             XmlMapper xmlMapper = new XmlMapper();
-            return xmlMapper.readValue(path.toFile(), new TypeReference<List<Animal>>() {});
+            return xmlMapper.readValue(path.toFile(), AnimalShelter.class);
         } catch (IOException e){
             System.out.println("Error al cargar los datos. Se creará una nueva lista de animales.");
             throw new RuntimeException(e);
