@@ -1,22 +1,25 @@
-{
-    "animals": [
-      {
-        "id": 1,
-        "name": "Luna",
-        "species": "Perro",
-        "age": 3,
-        "gender": "Hembra",
-        "entryDate": "2024-01-15",
-        "adopted": "true"
-      },
-      {
-        "id": 2,
-        "name": "Miau",
-        "species": "Gato",
-        "age": 2,
-        "gender": "Macho",
-        "entryDate": "2024-01-15",
-        "adopted": "false"
-      }
-    ]
-  }
+[ {
+  "id" : "1",
+  "name" : "Luna",
+  "species" : "Perro",
+  "age" : 3,
+  "gender" : "Hembra",
+  "entryDate" : "2024-01-15",
+  "adopted" : true
+}, {
+  "id" : "2",
+  "name" : "Miau",
+  "species" : "Gato",
+  "age" : 2,
+  "gender" : "Macho",
+  "entryDate" : "2024-01-15",
+  "adopted" : false
+}, {
+  "id" : "11",
+  "name" : "11",
+  "species" : "11",
+  "age" : 11,
+  "gender" : "11",
+  "entryDate" : "1111-11-11",
+  "adopted" : false
+} ]
