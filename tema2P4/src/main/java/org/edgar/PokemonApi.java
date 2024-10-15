@@ -25,7 +25,6 @@ public class PokemonApi {
             try{
                 JsonNode jsonNodeListPokemon = objectMapper.readTree(new URL(url));
                 listPokemon = new ListPokemon(objectMapper.readValue(jsonNodeListPokemon.get("results").traverse(), new TypeReference<>(){}));
-                listPokemon.getResult().forEach(System.out::println);
             } catch (Exception e){
                 System.out.println("Error al cargar los datos.");
                 throw new RuntimeException(e);

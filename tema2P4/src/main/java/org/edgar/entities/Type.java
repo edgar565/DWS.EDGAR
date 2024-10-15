@@ -16,4 +16,9 @@ import lombok.Setter;
 public class Type {
     @JsonProperty("name")
     private String name;
+
+    @Override
+    public String toString() {
+        return "\n   -name='" + name + '\'';
+    }
 }

@@ -35,15 +35,23 @@ public class Pokemon {
 
     @Override
     public String toString() {
+        StringBuilder moveString = new StringBuilder();
+        for (Moves moves : moves) {
+            moveString.append(moves.getMove().toString());
+        }
+        StringBuilder typeString = new StringBuilder();
+        for (Types types : types) {
+            typeString.append(types.getType().toString());
+        }
         return "Pokemon{" +
-                "baseExperience=" + baseExperience +
-                ", height=" + height +
-                ", id=" + id +
-                ", moves=" + moves +
-                ", name='" + name + '\'' +
-                ", order=" + order +
-                ", types=" + types +
-                ", weight=" + weight +
+                "\n  baseExperience=" + baseExperience +
+                "\n  height=" + height +
+                "\n  id=" + id +
+                "\n  moves {" + moveString +
+                "\n}\n  name='" + name + '\'' +
+                "\n  order=" + order +
+                "\n  types {" + typeString +
+                "\n}\n  weight=" + weight +
                 '}';
     }
 }

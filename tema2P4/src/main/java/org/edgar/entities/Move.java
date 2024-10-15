@@ -17,4 +17,10 @@ public class Move {
     @JsonProperty("name")
     private String name;
 
+    @Override
+    public String toString() {
+        return "\n   -name='" + name + '\'';
+
+
+    }
 }
