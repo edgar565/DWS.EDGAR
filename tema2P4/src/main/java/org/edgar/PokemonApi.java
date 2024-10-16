@@ -16,7 +16,7 @@ public class PokemonApi {
     public static void main(String[] args) {
         while (true){
             ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-            System.out.println("Pofavor introduce el nombre de un pokemon: ");
+            System.out.println("Pofavor introduce el nombre o el id de un pokemon: ");
             String url = "https://pokeapi.co/api/v2/pokemon/";
             String name = scanner.nextLine().toLowerCase();
             ListPokemon listPokemon;

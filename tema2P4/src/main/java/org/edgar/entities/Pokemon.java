@@ -51,7 +51,6 @@ public class Pokemon {
                 "\n}\n  name='" + name + '\'' +
                 "\n  order=" + order +
                 "\n  types {" + typeString +
-                "\n}\n  weight=" + weight +
-                '}';
+                "\n}\n  weight=" + weight;
     }
 }
