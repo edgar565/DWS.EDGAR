@@ -16,19 +16,20 @@ public class PokemonApi {
     public static void main(String[] args) {
         while (true){
             ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-            System.out.println("Pofavor introduce el nombre o el id de un pokemon: ");
             String url = "https://pokeapi.co/api/v2/pokemon/";
-            String name = scanner.nextLine().toLowerCase();
             ListPokemon listPokemon;
             Pokemon pokemon;
-            if (name.equals("exit")) break;
             try{
                 JsonNode jsonNodeListPokemon = objectMapper.readTree(new URL(url));
                 listPokemon = new ListPokemon(objectMapper.readValue(jsonNodeListPokemon.get("results").traverse(), new TypeReference<>(){}));
+                System.out.println(listPokemon);
             } catch (Exception e){
                 System.out.println("Error al cargar los datos.");
                 throw new RuntimeException(e);
             }
+            System.out.println("Pofavor introduce el nombre o el id de un pokemon: ");
+            String name = scanner.nextLine().toLowerCase();
+            if (name.equals("exit")) break;
             try{
                 JsonNode jsonNodePokemon = objectMapper.readTree(new URL(url + name));
                 pokemon = objectMapper.readValue(jsonNodePokemon.traverse(), Pokemon.class);

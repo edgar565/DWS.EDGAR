@@ -19,4 +19,8 @@ public class PokemonData {
     @JsonProperty("url")
     private String url;
 
+    @Override
+    public String toString() {
+        return name ;
+    }
 }

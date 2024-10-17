@@ -17,8 +17,8 @@ public class ListPokemon {
 
     @Override
     public String toString() {
-        return "ListPokemon{" +
-                "result=" + result +
-                '}';
+        return "\nListPokemon{" + result + "}";
+
+
     }
 }
