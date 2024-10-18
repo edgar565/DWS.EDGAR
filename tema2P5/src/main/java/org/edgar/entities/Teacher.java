@@ -17,4 +17,15 @@ public class Teacher {
     private String name;
     private String surname;
     private LocalDate startDate;
+    private int idSubject;
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", startDate=" + startDate +
+                "}";
+    }
 }

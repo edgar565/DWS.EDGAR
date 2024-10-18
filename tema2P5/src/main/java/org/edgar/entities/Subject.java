@@ -11,9 +11,17 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class Subject {
-
     private int id;
     private String name;
     private String classRoom;
     private Boolean required;
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", classRoom='" + classRoom + '\'' +
+                "}";
+    }
 }

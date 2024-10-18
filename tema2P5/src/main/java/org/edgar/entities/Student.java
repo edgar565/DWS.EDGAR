@@ -16,6 +16,19 @@ public class Student {
     private int id;
     private String name;
     private String surname;
+    private int idHouse;
     private int ageHouse;
     private LocalDate birthDate;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", idHouse=" + idHouse +
+                ", ageHouse=" + ageHouse +
+                ", birthDate=" + birthDate +
+                '}';
+    }
 }

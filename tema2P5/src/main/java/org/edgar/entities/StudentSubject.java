@@ -10,19 +10,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Pet {
-    private int id;
-    private String name;
-    private String species;
+public class StudentSubject {
     private int idStudent;
+    private int idSubject;
+    private double grade;
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", species='" + species + '\'' +
-                ", idStudent=" + idStudent +
+        return "StudentSubject{" +
+                "idStudent=" + idStudent +
+                ", idSubject=" + idSubject +
+                ", grade=" + grade +
                 '}';
     }
+
 }
