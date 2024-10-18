@@ -15,9 +15,9 @@ import java.time.LocalDate;
 public class Student {
     private int id;
     private String name;
-    private String surname;
+    private String lastName;
     private int idHouse;
-    private int ageHouse;
+    private int course;
     private LocalDate birthDate;
 
     @Override
@@ -25,9 +25,9 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", surname='" + lastName + '\'' +
                 ", idHouse=" + idHouse +
-                ", ageHouse=" + ageHouse +
+                ", ageHouse=" + course +
                 ", birthDate=" + birthDate +
                 '}';
     }

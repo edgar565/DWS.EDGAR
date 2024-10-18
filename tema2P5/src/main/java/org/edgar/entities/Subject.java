@@ -14,7 +14,7 @@ public class Subject {
     private int id;
     private String name;
     private String classRoom;
-    private Boolean required;
+    private Boolean obligatory;
 
     @Override
     public String toString() {

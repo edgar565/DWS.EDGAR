@@ -16,8 +16,9 @@ public class Teacher {
     private int id;
     private String name;
     private String surname;
-    private LocalDate startDate;
     private int idSubject;
+    private LocalDate startDate;
+
 
     @Override
     public String toString() {
