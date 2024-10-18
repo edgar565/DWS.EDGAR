@@ -56,21 +56,24 @@ public class Main {
                     showStudentsHouse(idHouseOption, houses, students);
                     break;
                 case 2:
-                    showSubjectsObligatory(subjects);
+                    System.out.println("Asignaturas obligatorias:");
+                    System.out.print(showSubjectsObligatory(subjects));
                     break;
                 case 3:
                     System.out.print("Porfavor introduce el nombre del estudiante:");
                     String nameStudent = scanner.next();
-                    showPetOfStudent(nameStudent, students, pets);
+                    System.out.println("Mascota del estudiante:");
+                    System.out.println(showPetOfStudent(nameStudent, students, pets));
                     break;
                 case 4:
                     System.out.println("Estudiantes sin mascota:");
-                    showStudentsWithoutPet(students, pets);
+                    System.out.println(showStudentsWithoutPet(students, pets));
                     break;
                 case 5:
                     System.out.print("Porfavor introduce el nombre del estudiante:");
                     nameStudent = scanner.next();
-                    showAverageCalificationStudent(nameStudent, students, studentSubjects);
+                    System.out.println("Promedio de calificación de estudiante:");
+                    System.out.println("Promedio de calificación: " + showAverageCalificationStudent(nameStudent, students, studentSubjects));
                     break;
                 case 6:
                     showNumberStudentsByHouse(houses, students);
@@ -221,26 +224,32 @@ public class Main {
             }
         }
     }
-    public static void showSubjectsObligatory(List<Subject> subjects) {
+    public static List<Subject> showSubjectsObligatory(List<Subject> subjects) {
+        List<Subject> subjectsObligatory = new ArrayList<>();
         for (Subject subject : subjects) {
             if(subject.getObligatory()) {
-                System.out.println(subject);
+                subjectsObligatory.add(subject);
             }
         }
+        return subjectsObligatory;
     }
-    public static void showPetOfStudent(String nameStudent, List<Student> students, List<Pet> pets) {
+    public static Pet showPetOfStudent(String nameStudent, List<Student> students, List<Pet> pets) {
+        Pet petReturn = null;
         for (Student student : students) {
             if (student.getName().equals(nameStudent)) {
                 int idStudent = student.getId();
                 for (Pet pet : pets) {
                     if (pet.getIdStudent() == idStudent) {
-                        System.out.println(pet);
+                        petReturn = pet;
+                        break;
                     }
                 }
             }
         }
+        return petReturn;
     }
-    public static void showStudentsWithoutPet(List<Student> students, List<Pet> pets) {
+    public static List<Student> showStudentsWithoutPet(List<Student> students, List<Pet> pets) {
+        List<Student> studentsWithoutPet = new ArrayList<>();
         for (Student student : students) {
             boolean found = false;
             for (Pet pet : pets) {
@@ -250,11 +259,12 @@ public class Main {
                 }
             }
             if (!found) {
-                System.out.println(student);
+                studentsWithoutPet.add(student);
             }
         }
+        return studentsWithoutPet;
     }
-    public static void showAverageCalificationStudent(String nameStudent, List<Student> students, List<StudentSubject> studentSubjects) {
+    public static double showAverageCalificationStudent(String nameStudent, List<Student> students, List<StudentSubject> studentSubjects) {
         double average = 0;
         for (Student student : students) {
             if (student.getName().equals(nameStudent)) {
@@ -269,8 +279,7 @@ public class Main {
                 average = average / count;
             }
         }
-        System.out.print("El promedio de calificaciones de " + nameStudent + " es: " + average);
-
+        return average;
     }
     public static void showNumberStudentsByHouse(List<House> houses, List<Student> students) {
         for(House house : houses) {
