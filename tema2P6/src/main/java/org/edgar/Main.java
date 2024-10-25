@@ -17,11 +17,9 @@ public class Main {
         String password = "taller2014";
         try (Connection connection = DriverManager.getConnection(urlConexion, user, password)) {
             menu(connection);
-
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-
     }
 
     public static void menu(Connection connection) {
@@ -96,7 +94,7 @@ public class Main {
              ResultSet rs = result.executeQuery();
             while (rs.next()) {
                 resultStudentsAndPets.add("Estudiante: " + rs.getString("nombre" + " " + rs.getString("apellido") +
-                        ", Mascota: " + rs.getString("mascota")));
+                        ", Mascota: " + rs.getString("nombre_mascota")));
             }
         } catch (Exception e) {
             e.printStackTrace();
