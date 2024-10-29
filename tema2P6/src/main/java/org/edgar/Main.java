@@ -161,7 +161,7 @@ public class Main {
                         ", Casa: " + rs.getString("nombre_casa"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return resultString;
     }
@@ -183,7 +183,7 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -202,7 +202,7 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         System.out.println(resultStudentsHasPets);
     }
@@ -218,7 +218,7 @@ public class Main {
                     System.out.println("Estudiante sin mascota: " + rs.getString("nombre") + " " + rs.getString("apellido"));
                 }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public static void averageCalificationsPerStudent(Connection connection) {
@@ -233,7 +233,7 @@ public class Main {
                         ", Promedio: " + rs.getDouble("promedio"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public static List<String> studentsFifthYearForHome(Connection connection) {
@@ -249,7 +249,7 @@ public class Main {
                         "Número de estudiantes en quinto año: " + rs.getInt("num_estudiantes"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return resultStudentsFifthYear;
     }
@@ -267,7 +267,7 @@ public class Main {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public static void averageScoresByAssignmentHouse(Connection connection, String subject) {
@@ -285,7 +285,7 @@ public class Main {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public static void increaseCalificationLastYear(Connection connection) {
@@ -296,7 +296,7 @@ public class Main {
             int rowsUpdated = result.executeUpdate();
             System.out.println("Calificaciones actualizadas para " + rowsUpdated + " estudiantes.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     public static void delSubjectStudents(Connection connection) {
@@ -307,7 +307,7 @@ public class Main {
             int rowsDeleted = result.executeUpdate();
             System.out.println("Desmatriculadas " + rowsDeleted + " asignaturas optativas.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
