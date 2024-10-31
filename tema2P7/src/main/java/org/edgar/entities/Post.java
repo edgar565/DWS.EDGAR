@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@BsonDiscriminator( value = "Post", key = "_cls" )
+@BsonDiscriminator( value = "post", key = "_cls" )
 public class Post {
     @BsonProperty(value = "title")
     String title; // título del post
