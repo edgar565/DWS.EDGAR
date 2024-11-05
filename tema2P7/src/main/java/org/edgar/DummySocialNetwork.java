@@ -7,7 +7,7 @@ public class DummySocialNetwork {
 
     public static void main(String[] args) {
         System.out.println("Bienvenido a DummySocialNetwork");
-        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:5432", "dummynetwork", "daw2");
+        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:27017", "dummynetwork", "daw2");
         int opcion;
         do {
             opcion = menu();

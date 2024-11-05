@@ -3,6 +3,7 @@ package org.edgar.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.time.LocalDate;
@@ -12,6 +13,9 @@ import java.util.List;
 @Setter
 @BsonDiscriminator(value = "profile", key = "_cls")
 public class Profile {
+
+    @BsonId
+
     @BsonProperty(value = "name")
     String name; // nombre del perfil
     @BsonProperty(value = "status")
@@ -23,13 +27,20 @@ public class Profile {
     @BsonProperty(value = "posts")
     List<Post> posts; // lista de amigos del perfil
 
-    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age, @BsonProperty("since") LocalDate since, @BsonProperty("posts") List<Post> posts) {
+    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age, @BsonProperty("posts") List<Post> posts) {
         this.name = name;
         this.status = status;
         this.age = age;
-        this.since = since;
+        this.since = LocalDate.now();
         this.posts = posts;
     }
+    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age) {
+        this.name = name;
+        this.status = status;
+        this.age = age;
+        this.since = LocalDate.now();
+    }
+
 
     @Override
     public String toString() {

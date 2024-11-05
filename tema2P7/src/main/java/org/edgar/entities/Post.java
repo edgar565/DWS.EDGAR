@@ -23,12 +23,10 @@ public class Post {
     @BsonProperty(value = "comments")
     List<String> comments; // lista de comentarios del post
 
-    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content, @BsonProperty("publishedDate") LocalDate publishedDate, @BsonProperty("likes") int likes, @BsonProperty("comments") List<String> comments) {
+    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content) {
         this.title = title;
         this.content = content;
-        this.publishedDate = publishedDate;
-        this.likes = likes;
-        this.comments = comments;
+        this.publishedDate = LocalDate.now();
     }
 
     @Override
