@@ -28,6 +28,10 @@ public class Post {
         this.content = content;
         this.publishedDate = LocalDate.now();
     }
+    public void addComment(String comment) {
+        if (comments == null) comments = new java.util.ArrayList<>();
+        comments.add(comment);
+    }
 
     @Override
     public String toString() {

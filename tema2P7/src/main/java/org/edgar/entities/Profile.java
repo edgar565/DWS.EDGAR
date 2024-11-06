@@ -15,6 +15,7 @@ import java.util.List;
 public class Profile {
 
     @BsonId
+    Object id;
 
     @BsonProperty(value = "name")
     String name; // nombre del perfil
