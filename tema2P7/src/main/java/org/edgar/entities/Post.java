@@ -13,23 +13,23 @@ import java.util.List;
 @BsonDiscriminator( value = "post", key = "_cls" )
 public class Post {
     @BsonProperty(value = "title")
-    String title; // título del post
+    String title;
     @BsonProperty(value = "content")
-    String content; // contenido del post
+    String content;
     @BsonProperty(value = "publishedDate")
-    LocalDate publishedDate; // fecha de creación del post
+    LocalDate publishedDate;
     @BsonProperty(value = "likes")
-    int likes; // cantidad de likes del post
+    int likes;
     @BsonProperty(value = "comments")
-    List<String> comments; // lista de comentarios del post
+    List<String> comments;
 
-    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content) {
+    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content, @BsonProperty("comments") List<String> comments) {
         this.title = title;
         this.content = content;
         this.publishedDate = LocalDate.now();
+        this.comments = comments;
     }
     public void addComment(String comment) {
-        if (comments == null) comments = new java.util.ArrayList<>();
         comments.add(comment);
     }
 

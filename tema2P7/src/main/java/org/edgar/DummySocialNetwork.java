@@ -1,5 +1,9 @@
 package org.edgar;
 
+import org.edgar.entities.Post;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DummySocialNetwork {
@@ -7,11 +11,11 @@ public class DummySocialNetwork {
 
     public static void main(String[] args) {
         System.out.println("Bienvenido a DummySocialNetwork");
-        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:27017", "dummynetwork", "daw2");
-        int opcion;
+        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:27017/", "dummynetwork", "daw2");
+        int optionMenu;
         do {
-            opcion = menu();
-            switch (opcion) {
+            optionMenu = menu();
+            switch (optionMenu) {
                 case 1:
                     newProfile(mongoDBManager);
                     break;
@@ -46,7 +50,7 @@ public class DummySocialNetwork {
                 default:
                     System.out.println("Opción no válida");
             }
-        } while (opcion != 0);
+        } while (optionMenu != 0);
     }
 
     private static int menu() {
@@ -76,8 +80,10 @@ public class DummySocialNetwork {
         System.out.print("Introduce tu edad:");
         int age = scanner.nextInt();
         scanner.nextLine();
-        mongoDBManager.createProfile(name, status, age);
+        List<Post> posts = new ArrayList<>();
+        mongoDBManager.createProfile(name, status, age, posts);
     }
+
 
     private static void publishPost(MongoDBManager mongoDBManager) {
         System.out.println("Crear una publicación en mi perfil");
@@ -85,7 +91,8 @@ public class DummySocialNetwork {
         String title = scanner.nextLine();
         System.out.print("Introduce el contenido de la publicación:");
         String content = scanner.nextLine();
-        mongoDBManager.publishPost(title, content);
+        List<String> comments = new ArrayList<>();
+        mongoDBManager.publishPost(title, content, comments);
     }
 
     private static void updateStatus(MongoDBManager mongoDBManager) {

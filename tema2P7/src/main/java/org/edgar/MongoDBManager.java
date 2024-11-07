@@ -40,15 +40,14 @@ public class MongoDBManager {
         }
     }
 
-    public void createProfile(String name, String status, int age) {
-        myProfile = new Profile(name, status, age, null);
+    public void createProfile(String name, String status, int age, List<Post> posts) {
+        myProfile = new Profile(name, status, age, posts);
         profiles.insertOne(myProfile);
     }
 
-    public void publishPost(String title, String content) {
-        Post post = new Post(title, content);
-        List<Post> posts= myProfile.getPosts();
-        if (posts == null) posts = new java.util.ArrayList<>();
+    public void publishPost(String title, String content, List<String> comments) {
+        Post post = new Post(title, content, comments);
+        List<Post> posts = myProfile.getPosts();
         posts.add(post);
         profiles.replaceOne(eq(myProfile.getId()), new Profile(myProfile.getName(), myProfile.getStatus(), myProfile.getAge(), posts));
     }
@@ -69,91 +68,88 @@ public class MongoDBManager {
     }
 
     public void showPosts(String profileName) {
-        Profile perfil = null;
+        Profile currentProfile = null;
         for (Profile profile : profiles.find(eq("name", profileName))) {
-            perfil = profile;
+            currentProfile = profile;
         }
-        if (perfil!=null) {
-            System.out.println(perfil);
-        }else {
+        if (currentProfile != null) {
+            System.out.println(currentProfile);
+        } else {
             System.out.println("El perfil no existe");
         }
-
     }
 
     public void likePost(String profileName, String title) {
-        Profile perfil = null;
+        Profile currentProfile = null;
         for (Profile profile : profiles.find(eq("name", profileName))) {
-            perfil = profile;
+            currentProfile = profile;
         }
-        if (perfil!=null) {
-            if (!perfil.getPosts().isEmpty()) {
-                for (Post post : perfil.getPosts()) {
+        if (currentProfile != null) {
+            if (!currentProfile.getPosts().isEmpty()) {
+                for (Post post : currentProfile.getPosts()) {
                     if (post.getTitle().equals(title)) {
                         post.setLikes(post.getLikes() + 1);
-                    }else {
+                    } else {
                         System.out.println("Post no encontrado");
                     }
                 }
-            }else {
+            } else {
                 System.out.println("El perfil no tiene publicaciones");
             }
-        }else {
+        } else {
             System.out.println("El perfil no existe");
         }
 
-        assert perfil != null;
-        profiles.replaceOne(eq(perfil.getId()), perfil);
+        assert currentProfile != null;
+        profiles.replaceOne(eq(currentProfile.getId()), currentProfile);
     }
 
     public void commentPost(String profileName, String title, String comment) {
-        Profile perfil = null;
+        Profile currentProfile = null;
         for (Profile profile : profiles.find(eq("name", profileName))) {
-            perfil = profile;
+            currentProfile = profile;
         }
-        if (perfil!=null) {
-            if (!perfil.getPosts().isEmpty()) {
-                for (Post post : perfil.getPosts()) {
+        if (currentProfile != null) {
+            if (!currentProfile.getPosts().isEmpty()) {
+                for (Post post : currentProfile.getPosts()) {
                     if (post.getTitle().equals(title)) {
                         post.addComment(comment);
-                    }else {
+                    } else {
                         System.out.println("Post no encontrado");
                     }
                 }
-            }else {
+            } else {
                 System.out.println("El perfil no tiene publicaciones");
             }
-        }else {
+        } else {
             System.out.println("El perfil no existe");
         }
-        assert perfil != null;
-        profiles.replaceOne(eq(perfil.getId()), perfil);
+        assert currentProfile != null;
+        profiles.replaceOne(eq(currentProfile.getId()), currentProfile);
     }
 
-    public void showProfileStats(String profileName) {
-        Profile perfil = null;
-        for (Profile profile : profiles.find()) {
-            if (profile.getName().equals(profileName)) {
-                perfil = profile;
-            }
+    public void showProfileStats() {
+        Profile currentProfile = null;
+        for (Profile profile : profiles.find(eq("name", myProfile.getName()))) {
+            currentProfile = profile;
         }
-        if (perfil != null) {
-            System.out.println("Nombre: "+perfil.getName());
-            if (!(perfil.getPosts() ==null)) {
-                System.out.println("Numero de publicaciones: " + perfil.getPosts().size());
-                System.out.println("Total de likes recibidos: " + perfil.getPosts().stream().mapToInt(Post::getLikes).sum());
+        if (currentProfile != null) {
+            System.out.println("Nombre: " + currentProfile.getName());
+            if (!(currentProfile.getPosts() == null)) {
+                System.out.println("Numero de publicaciones: " + currentProfile.getPosts().size());
+                System.out.println("Total de likes recibidos: " + currentProfile.getPosts().stream().mapToInt(Post::getLikes).sum());
 
-                int contador=0;
-                for (Post post : perfil.getPosts()) {
+                int counter = 0;
+                for (Post post : currentProfile.getPosts()) {
                     if (post.getComments() != null) {
                         for (String comment : post.getComments()) {
-                            contador++;
+                            counter++;
                         }
                     }
                 }
-                System.out.println("Total de comentarios: " + contador);
+                System.out.println("Total de comentarios: " + counter);
 
-            }else {
+            } else {
                 System.out.println("""
                         El perfil no tiene publicaciones
                         El perfil no tiene likes
@@ -164,37 +160,40 @@ public class MongoDBManager {
     }
 
     public void showAllStats() {
-        int totalPu=0;
-        int totalLikes=0;
-        int totalCom=0;
+        int totalPublications = 0;
+        int totalLikes = 0;
+        int totalComments = 0;
+        List<Profile> profilesList = new ArrayList<>();
+        List<String> adultUsers = new ArrayList<>();
+
         for (Profile profile : profiles.find()) {
-            if (profile.getPosts() == null) continue;
-            totalPu+=profile.getPosts().size();
-            totalLikes+=profile.getPosts().stream().mapToInt(Post::getLikes).sum();
-            for (Post post : profile.getPosts()) {
-                if (post.getComments() != null) {
-                    for (String comment : post.getComments()) {
-                        totalCom++;
+            profilesList.add(profile);
+            if (profile.getAge() >= 18) {
+                adultUsers.add(profile.getName());
+            }
+
+            if (profile.getPosts() != null) {
+                totalPublications += profile.getPosts().size();
+                totalLikes += profile.getPosts().stream().mapToInt(Post::getLikes).sum();
+
+                for (Post post : profile.getPosts()) {
+                    if (post.getComments() != null) {
+                        totalComments += post.getComments().size();
                     }
                 }
             }
         }
-        List<Profile> profilesList = createCopyList();
-        profilesList.sort(Comparator.comparingInt(Profile::getAge));
 
-        System.out.println("Numero total de perfiles: " + profiles.countDocuments());
-        System.out.println("Total de publicaciones: " + totalPu);
+        profilesList.sort((p1, p2) -> Integer.compare(p2.getPosts().size(), p1.getPosts().size()));
+
+        System.out.println("Número total de perfiles: " + profiles.countDocuments());
+        System.out.println("Total de publicaciones: " + totalPublications);
         System.out.println("Total de likes: " + totalLikes);
-        System.out.println("Total de comentarios: " + totalCom);
+        System.out.println("Total de comentarios: " + totalComments);
+        System.out.println("Usuarios mayores de edad: " + adultUsers);
 
-        profilesList.stream().limit(3).forEach(pro-> System.out.println(pro.getName()));
-    }
-    private List<Profile> createCopyList() {
-        List<Profile> profilesList = new ArrayList<>();
-        for (Profile profile : profiles.find()) {
-            profilesList.add(profile);
-        }
-        profilesList.forEach(System.out::println);
-        return profilesList;
+        // Mostramos los tres perfiles con más publicaciones
+        System.out.println("Top 3 perfiles con más publicaciones:");
+        profilesList.stream().limit(3).forEach(profile -> System.out.println(profile.getName() + ": " + profile.getPosts().size() + " publicaciones"));
     }
 }

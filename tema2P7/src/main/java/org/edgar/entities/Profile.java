@@ -13,20 +13,18 @@ import java.util.List;
 @Setter
 @BsonDiscriminator(value = "profile", key = "_cls")
 public class Profile {
-
     @BsonId
     Object id;
-
     @BsonProperty(value = "name")
-    String name; // nombre del perfil
+    String name;
     @BsonProperty(value = "status")
-    String status; // estado del perfil
+    String status;
     @BsonProperty(value = "age")
-    int age; // edad del perfil
+    int age;
     @BsonProperty(value = "since")
-    LocalDate since; // fecha de creación del perfil
+    LocalDate since;
     @BsonProperty(value = "posts")
-    List<Post> posts; // lista de amigos del perfil
+    List<Post> posts;
 
     public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age, @BsonProperty("posts") List<Post> posts) {
         this.name = name;
@@ -35,23 +33,10 @@ public class Profile {
         this.since = LocalDate.now();
         this.posts = posts;
     }
-    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age) {
-        this.name = name;
-        this.status = status;
-        this.age = age;
-        this.since = LocalDate.now();
-    }
-
-
     @Override
     public String toString() {
         String string = "-".repeat(20) + "\n" + name + "\nUsuario desde: " + since + "\nEstado:" + status + "\nEdad: " + age + " años\n";
-        if (posts != null) {
-            string += "Publicaciones:\n";
-            for (Post post : posts) {
-                string += post + "\n";
-            }
-        } else {
+        if (posts == null) {
             string += "No ha publicado nada todavía.\n";
         }
         string += "-".repeat(20);
