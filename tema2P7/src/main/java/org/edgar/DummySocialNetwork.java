@@ -10,8 +10,8 @@ public class DummySocialNetwork {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Bienvenido a DummySocialNetwork");
-        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:27017/", "dummynetwork", "daw2");
+        System.out.println("Bienvenido a DummySocialNetwork de Edgar");
+        MongoDBManager mongoDBManager = new MongoDBManager("mongodb://98.84.89.194:27017/", "edgar", "daw2");
         int optionMenu;
         do {
             optionMenu = menu();
@@ -80,8 +80,7 @@ public class DummySocialNetwork {
         System.out.print("Introduce tu edad:");
         int age = scanner.nextInt();
         scanner.nextLine();
-        List<Post> posts = new ArrayList<>();
-        mongoDBManager.createProfile(name, status, age, posts);
+        mongoDBManager.createProfile(name, status, age);
     }
 
 
@@ -91,8 +90,7 @@ public class DummySocialNetwork {
         String title = scanner.nextLine();
         System.out.print("Introduce el contenido de la publicación:");
         String content = scanner.nextLine();
-        List<String> comments = new ArrayList<>();
-        mongoDBManager.publishPost(title, content, comments);
+        mongoDBManager.publishPost(title, content);
     }
 
     private static void updateStatus(MongoDBManager mongoDBManager) {

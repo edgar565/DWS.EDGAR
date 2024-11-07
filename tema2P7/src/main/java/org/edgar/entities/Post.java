@@ -2,6 +2,7 @@ package org.edgar.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
@@ -23,11 +24,11 @@ public class Post {
     @BsonProperty(value = "comments")
     List<String> comments;
 
-    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content, @BsonProperty("comments") List<String> comments) {
+    @BsonCreator
+    public Post(@BsonProperty("title") String title, @BsonProperty("content") String content) {
         this.title = title;
         this.content = content;
         this.publishedDate = LocalDate.now();
-        this.comments = comments;
     }
     public void addComment(String comment) {
         comments.add(comment);

@@ -40,14 +40,17 @@ public class MongoDBManager {
         }
     }
 
-    public void createProfile(String name, String status, int age, List<Post> posts) {
-        myProfile = new Profile(name, status, age, posts);
+    public void createProfile(String name, String status, int age) {
+        myProfile = new Profile(name, status, age);
         profiles.insertOne(myProfile);
     }
 
-    public void publishPost(String title, String content, List<String> comments) {
-        Post post = new Post(title, content, comments);
+    public void publishPost(String title, String content) {
+        Post post = new Post(title, content);
         List<Post> posts = myProfile.getPosts();
+        if (posts == null) {
+            posts = new ArrayList<>();
+        }
         posts.add(post);
         profiles.replaceOne(eq(myProfile.getId()), new Profile(myProfile.getName(), myProfile.getStatus(), myProfile.getAge(), posts));
     }

@@ -2,6 +2,7 @@ package org.edgar.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
@@ -26,7 +27,14 @@ public class Profile {
     @BsonProperty(value = "posts")
     List<Post> posts;
 
-    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age, @BsonProperty("posts") List<Post> posts) {
+    @BsonCreator
+    public Profile(@BsonProperty("name") String name, @BsonProperty("status") String status, @BsonProperty("age") int age) {
+        this.name = name;
+        this.status = status;
+        this.age = age;
+        this.since = LocalDate.now();
+    }
+    public Profile(@BsonProperty(value="name")String name, @BsonProperty(value="status")String status,@BsonProperty(value="age")int age,@BsonProperty(value = "posts")List<Post> posts) {
         this.name = name;
         this.status = status;
         this.age = age;
