@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Houses</title>
+</head>
+<body>
+<h1>Houses</h1>
+<table>
+    <tr th:each="house : ${houses}">
+        <td ><a th:href="@{/house/{name}(name=${house.name})}" th:text="${house.name}"></a></td>
+    </tr>
+</table>
+</body>
+</html>
