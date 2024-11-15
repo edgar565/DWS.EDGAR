@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Student</title>
+    <link rel="stylesheet" href="../css/student.css">
 </head>
 <body>
 <h1 th:text="${student.name}"></h1>
@@ -10,5 +11,6 @@
     <li><<a th:href="@{/house/{name}(name=${student.house.name})}" th:text="${student.house.name}"></a></li>
     <li th:text="${student.patronus}"></li>
 </ul>
+<p><a th:href="@{/}"></a>INDEX</p>
 </body>
 </html>

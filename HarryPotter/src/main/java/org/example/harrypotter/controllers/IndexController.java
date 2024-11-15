@@ -11,29 +11,24 @@ import org.example.harrypotter.services.StudentServiceImplementation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
-public class HouseController {
-
+public class IndexController {
     private HouseService houseService = new HouseServiceImplementation(new HouseRepository());
-    private StudentService StudentService = new StudentServiceImplementation(new StudentRepository());
+    private StudentService studentService = new StudentServiceImplementation(new StudentRepository());
 
-    @GetMapping("/houses")
-    public String getHouses(Model model) {
+    @GetMapping("/")
+    public String getIndex(Model model) {
         List<House> houses = houseService.getHouses();
-        model.addAttribute("houses", houses);
-        return "houses";
-    }
-
-    @GetMapping("/house/{name}")
-    public String getHouse(Model model, @PathVariable String name) {
-        House house = houseService.getHouseByName(name);
+        List<Student> students = studentService.getStudents();
+        Random random = new Random();
+        House house = houses.get(random.nextInt(houses.size()));
+        Student student = students.get(random.nextInt(students.size()));
         model.addAttribute("house", house);
-        List<Student> students = StudentService.getStudents();
-        model.addAttribute("students", students);
-        return "house";
+        model.addAttribute("student", student);
+        return "index";
     }
 }

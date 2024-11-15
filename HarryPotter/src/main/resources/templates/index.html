@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter Form</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+<div class="form-container">
+    <h1>Harry Potter</h1>
+    <form>
+        <div class="form-group">
+            <label for="house">House</label>
+            <a id="house" th:href="@{/house/{name}(name=${house.name})}" th:text="${house.name}" class="form-link"></a>
+        </div>
+        <div class="form-group">
+            <label for="student">Student</label>
+            <a id="student" th:href="@{/student(name=${student.name})}" th:text="${student.name}" class="form-link"></a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
