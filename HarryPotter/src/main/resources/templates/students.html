@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Estudiantes</title>
+    <link rel="stylesheet" href="../css/students.css">
+</head>
+<body>
+
+<h1>Listado de Estudiantes</h1>
+
+<!-- Formulario de filtros -->
+<form action="/students" method="get">
+    <label for="name">Filtrar por nombre:</label>
+    <input type="text" id="name" name="name" placeholder="Introduce parte del nombre"
+           th:value="${param.name != null ? param.name : ''}">
+
+    <label for="patronus">Filtrar por Patronus:</label>
+    <input type="text" id="patronus" name="patronus" placeholder="Introduce parte del Patronus"
+           th:value="${param.patronus != null ? param.patronus : ''}">
+
+    <button type="submit">Filtrar</button>
+</form>
+
+<!-- Tabla de estudiantes -->
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Patronus</th>
+        <th>Casa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td><a th:href="@{/student(name=${student.name})}" th:text="${student.name}">Nombre</a></td>
+        <td th:text="${student.patronus}">Patronus</td>
+        <td><a th:href="@{/house/{name}(name=${student.houseName})}" th:text="${student.houseName}">Casa</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Enlace de navegación -->
+<a href="/">Inicio</a>
+
+</body>
+</html>

@@ -1,3 +1,80 @@
-body{
+/* Reset básico */
+body, h1, table, tr, td, a, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
+/* Fondo general */
+body {
+    background-color: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #34495e;
+    text-align: left;
+}
+
+td a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+td a:hover {
+    color: #0056b3;
+    border-bottom: 1px solid #0056b3;
+}
+
+/* Enlace al índice */
+a p {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: inline-block;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+a p:hover {
+    color: #0056b3;
+    border-bottom: 1px solid #0056b3;
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Houses</title>
+    <link rel="stylesheet" href="../css/houses.css">
 </head>
 <body>
 <h1>Houses</h1>
@@ -11,6 +12,6 @@
         <td ><a th:href="@{/house/{name}(name=${house.name})}" th:text="${house.name}"></a></td>
     </tr>
 </table>
-<p><a th:href="@{/}"></a>INDEX</p>
+<a th:href="@{/}"><p>INDEX</p></a>
 </body>
 </html>

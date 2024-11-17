@@ -23,4 +23,11 @@ public class StudentServiceImplementation implements StudentService {
     public List<Student> getStudentsByHouse(String house) {
         return studentRepository.getStudentsByHouse(house);
     }
+    public List<Student> filterStudents(String name, String patronus) {
+        List<Student> students = getStudents();
+        return students.stream()
+                .filter(s -> (name == null || s.getName().toLowerCase().contains(name.toLowerCase())) &&
+                        (patronus == null || s.getPatronus().equalsIgnoreCase(patronus)))
+                .toList();
+    }
 }

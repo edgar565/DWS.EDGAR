@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="../css/student.css">
 </head>
 <body>
-<h1 th:text="${student.name}"></h1>
-<ul>
-    <li><<a th:href="@{/house/{name}(name=${student.house.name})}" th:text="${student.house.name}"></a></li>
-    <li th:text="${student.patronus}"></li>
-</ul>
-<p><a th:href="@{/}"></a>INDEX</p>
+<div>
+    <h1 th:text="${student.name}"></h1>
+    <ul>
+        <li><a th:href="@{/house/{name}(name=${student.house.name})}" th:text="${student.house.name}"></a></li>
+        <li><p th:text="${student.patronus}"></p></li>
+    </ul>
+    <a th:href="@{/}"><p>INDEX</p></a>
+</div>
 </body>
+
 </html>
