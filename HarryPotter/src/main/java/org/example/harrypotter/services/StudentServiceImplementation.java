@@ -27,7 +27,8 @@ public class StudentServiceImplementation implements StudentService {
         List<Student> students = getStudents();
         return students.stream()
                 .filter(s -> (name == null || s.getName().toLowerCase().contains(name.toLowerCase())) &&
-                        (patronus == null || s.getPatronus().equalsIgnoreCase(patronus)))
+                        (patronus == null || s.getPatronus().toLowerCase().contains(patronus.toLowerCase())))
                 .toList();
     }
+
 }

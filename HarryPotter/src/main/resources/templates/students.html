@@ -34,7 +34,7 @@
     <tr th:each="student : ${students}">
         <td><a th:href="@{/student(name=${student.name})}" th:text="${student.name}">Nombre</a></td>
         <td th:text="${student.patronus}">Patronus</td>
-        <td><a th:href="@{/house/{name}(name=${student.houseName})}" th:text="${student.houseName}">Casa</a></td>
+        <td><a th:href="@{/house/{name}(name=${student.house.getName()})}" th:text="${student.house.getName()}">Casa</a></td>
     </tr>
     </tbody>
 </table>

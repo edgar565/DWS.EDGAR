@@ -16,8 +16,13 @@ public class StudentsController {
     private StudentService studentService = new StudentServiceImplementation(new StudentRepository());
 
     @GetMapping("/students")
-    public String getStudents(@RequestParam(required = false) String name, @RequestParam(required = false) String patronus, Model model) {
-        model.addAttribute("students", studentService.filterStudents(name, patronus));
+    public String getStudents(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String patronus,
+            Model model) {
+        // Llama al servicio con los filtros
+        List<Student> filteredStudents = studentService.filterStudents(name, patronus);
+        model.addAttribute("students", filteredStudents);
         return "students";
     }
 
