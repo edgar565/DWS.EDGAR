@@ -28,4 +28,26 @@ public class HouseRepository {
         }
         return null;
     }
+    public void createHouse(House house) {
+        houses.add(house);
+    }
+    public void updateHouse(String name, House house) {
+        for (House h : houses) {
+            if (h.getName().equals(name)) {
+                h.setName(house.getName());
+                h.setMascot(house.getMascot());
+                h.setFounder(house.getFounder());
+                break;
+            }
+        }
+    }
+
+    public void deleteHouse(String name) {
+        for (House h : houses) {
+            if (h.getName().equals(name)) {
+                houses.remove(h);
+                break;
+            }
+        }
+    }
 }

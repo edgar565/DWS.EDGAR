@@ -7,9 +7,10 @@
 </head>
 <body>
 <h1>Houses</h1>
+<button><a th:href="@{/house/create}">Create House</a></button>
 <table>
     <tr th:each="house : ${houses}">
-        <td ><a th:href="@{/house/{name}(name=${house.name})}" th:text="${house.name}"></a></td>
+        <td ><a th:href="@{/house/{name}(name=${house.name})}" th:text="${house.name}"></a> <a th:href="@{/house/update/{name}(name=${house.name})}">Actualizar</a> <a th:href="@{/house/delete/{name}(name=${house.name})}">Borrar</a></td>
     </tr>
 </table>
 <a th:href="@{/}"><p>INDEX</p></a>

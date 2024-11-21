@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Estudiante</title>
+</head>
+<body>
+<h1>Actualizar Estudiante</h1>
+<form action="#" th:action="@{/student/update/{name}(name=${student.name})}" th:object="${student}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <br>
+    <label for="house">House:</label>
+    <select id="house" name="house" th:field="*{house}">
+        <option th:each="house : ${houses}" th:value="${house.name}" th:text="${house.name}"></option>
+    </select>
+
+    <label for="patronus">Patronus:</label>
+    <input type="text" id="patronus" name="patronus" th:field="*{patronus}" required>
+    <br>
+    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+</form>
+
+</body>
+</html>

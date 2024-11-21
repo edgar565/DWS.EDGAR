@@ -36,13 +36,18 @@ public class StudentRepository {
         return null;
     }
 
-    public List<Student> getStudentsByHouse(String houseName) {
-        List<Student> studentsByHouse = new ArrayList<>();
-        for (Student student : students) {
-            if (student.getHouse().getName().equals(houseName)) {
-                studentsByHouse.add(student);
+    public void createStudent(House house, Student student) {
+        student.setHouse(house);
+        students.add(student);
+
+    }
+
+    public void updateStudent(String name, Student student) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getName().equals(name)) {
+                students.set(i, student);
+                break;
             }
         }
-        return studentsByHouse;
     }
 }

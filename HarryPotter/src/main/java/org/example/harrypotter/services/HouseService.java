@@ -8,4 +8,7 @@ import java.util.List;
 public interface HouseService {
     List<House> getHouses();
     House getHouseByName(String name);
+    void createHouse(House house);
+    void updateHouse(String name, House house);
+    void deleteHouse(String name);
 }

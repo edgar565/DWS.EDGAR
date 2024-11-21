@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>House</title>
-    <link rel="stylesheet" href="../css/house.css">
 </head>
 <body>
 <h1 th:text="${house.name}"></h1>
@@ -11,9 +10,10 @@
     <li th:text="${house.founder}"></li>
     <li th:text="${house.mascot}"></li>
 </ul>
+<button><a th:href="@{/house/createstudent/{name}(name=${house.name})}">Create Student</a></button>
 <table>
     <tr th:each="student : ${students}">
-        <td><a th:href="@{/student(name=${student.name})}" th:text="${student.name}"></a></td>
+        <td><a th:href="@{/student(name=${student.name})}" th:text="${student.name}"></a> <a th:href="@{/student/update/{name}(name=${student.name})}">Actualizar</a></td>
     </tr>
 </table>
 <a th:href="@{/}"><p>INDEX</p></a>

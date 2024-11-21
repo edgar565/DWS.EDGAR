@@ -1,5 +1,6 @@
 package org.example.harrypotter.services;
 
+import org.example.harrypotter.entities.House;
 import org.example.harrypotter.entities.Student;
 import org.example.harrypotter.repositories.StudentRepository;
 
@@ -11,18 +12,16 @@ public class StudentServiceImplementation implements StudentService {
     public StudentServiceImplementation(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-
+    @Override
     public List<Student> getStudents() {
         return studentRepository.getStudents();
     }
-
+    @Override
     public Student getStudentByName(String name) {
         return studentRepository.getStudent(name);
     }
 
-    public List<Student> getStudentsByHouse(String house) {
-        return studentRepository.getStudentsByHouse(house);
-    }
+    @Override
     public List<Student> filterStudents(String name, String patronus) {
         List<Student> students = getStudents();
         return students.stream()
@@ -30,5 +29,14 @@ public class StudentServiceImplementation implements StudentService {
                         (patronus == null || s.getPatronus().toLowerCase().contains(patronus.toLowerCase())))
                 .toList();
     }
+    @Override
+    public void createStudent(House house, Student student) {
+        studentRepository.createStudent(house, student);
+    }
+    @Override
+    public void updateStudent(String name, Student student) {
+        studentRepository.updateStudent(name, student);
+    }
+
 
 }

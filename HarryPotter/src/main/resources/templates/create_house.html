@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create House</title>
+</head>
+<body>
+<h1>Create House</h1>
+<form action="#" th:action="@{/house/create}" th:object="${house}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <br>
+    <label for="founder">Founder:</label>
+    <input type="text" id="founder" name="founder" th:field="*{founder}" required>
+    <br>
+    <label for="mascot">Mascot:</label>
+    <input type="text" id="mascot" name="mascot" th:field="*{mascot}" required>
+    <br>
+    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+</form>
+</body>
+</html>
