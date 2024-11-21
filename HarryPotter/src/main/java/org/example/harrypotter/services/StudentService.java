@@ -10,5 +10,6 @@ public interface StudentService {
     Student getStudentByName(String name);
     List<Student> filterStudents(String name, String patronus);
     void createStudent(House house, Student student);
-    void updateStudent(String name, Student student);
+    void updateStudent(String name, Student student, House house);
+    List<Student> getStudentsByHouse(String name);
 }

@@ -10,7 +10,7 @@
     <h1 th:text="${student.name}"></h1>
     <ul>
         <li><a th:href="@{/house/{name}(name=${student.house.name})}" th:text="${student.house.name}"></a></li>
-        <li><p th:text="${student.patronus}"></p></li>
+        <li><p th:text="${student.getPatronus()}"></p></li>
     </ul>
     <a th:href="@{/}"><p>INDEX</p></a>
 </div>

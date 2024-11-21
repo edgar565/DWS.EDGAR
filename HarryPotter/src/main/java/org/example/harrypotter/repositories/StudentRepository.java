@@ -42,11 +42,12 @@ public class StudentRepository {
 
     }
 
-    public void updateStudent(String name, Student student) {
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getName().equals(name)) {
-                students.set(i, student);
-                break;
+    public void updateStudent(String name, Student student, House house) {
+        for( Student s : students ){
+            if(s.getName().equals(name)){
+                s.setName(student.getName());
+                s.setHouse(house);
+                s.setPatronus(student.getPatronus());
             }
         }
     }

@@ -11,7 +11,7 @@
     <input type="text" id="name" name="name" th:field="*{name}" required>
     <br>
     <label for="house">House:</label>
-    <select id="house" name="house" th:field="*{house}">
+    <select id="house" name="house" th:field="*{house.name}">
         <option th:each="house : ${houses}" th:value="${house.name}" th:text="${house.name}"></option>
     </select>
 

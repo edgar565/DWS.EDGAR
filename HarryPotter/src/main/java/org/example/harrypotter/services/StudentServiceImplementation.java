@@ -34,8 +34,15 @@ public class StudentServiceImplementation implements StudentService {
         studentRepository.createStudent(house, student);
     }
     @Override
-    public void updateStudent(String name, Student student) {
-        studentRepository.updateStudent(name, student);
+    public void updateStudent(String name, Student student, House house) {
+        studentRepository.updateStudent(name, student, house);
+    }
+    @Override
+    public List<Student> getStudentsByHouse(String name) {
+        List<Student> students = getStudents();
+        return students.stream()
+                .filter(s -> s.getHouse().getName().toLowerCase().contains(name.toLowerCase()))
+                .toList();
     }
 
 

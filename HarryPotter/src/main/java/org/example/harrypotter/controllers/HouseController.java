@@ -33,7 +33,7 @@ public class HouseController {
     public String getHouse(Model model, @PathVariable String name) {
         House house = houseService.getHouseByName(name);
         model.addAttribute("house", house);
-        List<Student> students = StudentService.getStudents();
+        List<Student> students = StudentService.getStudentsByHouse(name);
         model.addAttribute("students", students);
         return "house";
     }
@@ -84,7 +84,8 @@ public class HouseController {
 
     @PostMapping("/student/update/{name}")
     public String updateStudent(@PathVariable String name, Student student) {
-        StudentService.updateStudent(name, student);
-        return "redirect:/house/{name}";
+        House house = houseService.getHouseByName(student.getHouse().getName());
+        StudentService.updateStudent(name, student, house);
+        return "redirect:/houses";
     }
 }
