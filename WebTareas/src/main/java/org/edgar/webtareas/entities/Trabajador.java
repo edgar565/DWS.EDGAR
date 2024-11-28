@@ -1,17 +1,22 @@
 package org.edgar.webtareas.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
 
 @Entity
-@Table(name = "trabajador")
+@Table(name = "trabajadores")
 public class Trabajador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int trabajador_id;
+    private Long trabajador_id;
     private String nombre;
     private int edad;
 
@@ -19,7 +24,12 @@ public class Trabajador {
     @JoinColumn(name = "equipo_id", nullable = false)
     private Equipo equipo;
 
-    @OneToMany(mappedBy = "trabajador")
-    private List<Tareas> tareas = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "trabajador_tareas",  // Nombre de la tabla intermedia
+            joinColumns = @JoinColumn(name = "trabajador_id"),  // Columna que hace referencia al autor
+            inverseJoinColumns = @JoinColumn(name = "tarea_id")  // Columna que hace referencia a la editorial
+    )
+    private Set<Tareas> tareas = new HashSet<>();  // Relación con editoriales
 
 }

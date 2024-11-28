@@ -1,8 +1,15 @@
 package org.edgar.webtareas.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
 
 @Entity
 @Table(name = "tareas")
@@ -10,7 +17,7 @@ public class Tareas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tarea_id;
+    private long tarea_id;
     private String nombre;
     private String descripcion;
     private LocalDate fechaApertura;
@@ -18,8 +25,7 @@ public class Tareas {
     private String tipo;
     private String estado;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "trabajador_id", nullable = false)
-    private Trabajador trabajador;
+    @ManyToMany(mappedBy = "tareas")  // Indicamos el atributo de la clase Author que se usará para la relación
+    private Set<Trabajador> trabajadores = new HashSet<>();  // Atibuto de tipo Set para almacenar los autores
 
 }

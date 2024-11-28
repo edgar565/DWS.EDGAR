@@ -1,18 +1,24 @@
 package org.edgar.webtareas.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
 
 @Entity
-@Table(name = "equipo")
+@Table(name = "equipos")
 public class Equipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int equipo_id;
+    private long equipo_id;
+    private String nombre;
 
     @OneToMany(mappedBy = "equipo")
-    private List<Trabajador> trabajadores = new ArrayList<>();
+    private Set<Trabajador> trabajadores = new HashSet<>();
 }
