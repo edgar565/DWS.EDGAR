@@ -29,13 +29,6 @@ public class TrabajadorController {
         return "trabajadores";
     }
 
-    @GetMapping("/trabajador/{trabajador_id}")
-    public String getTrabajador(@PathVariable("trabajador_id") Long trabajador_id, Model model) {
-        Trabajador trabajador = trabajadorService.findById(trabajador_id);
-        model.addAttribute("trabajador", trabajador);
-        return "trabajador";
-    }
-
     @GetMapping("/trabajador/edit/{trabajador_id}")
     public String getEditTrabajador(@PathVariable("trabajador_id") Long trabajador_id, Model model) {
         model.addAttribute("trabajador", trabajadorService.findById(trabajador_id));
@@ -47,6 +40,4 @@ public class TrabajadorController {
         trabajadorService.editTrabajador(trabajador_id, nombre, edad);
         return "redirect:/trabajador/" + trabajador_id;
     }
-
-
 }

@@ -21,4 +21,5 @@ public class Equipo {
 
     @OneToMany(mappedBy = "equipo")
     private Set<Trabajador> trabajadores = new HashSet<>();
+
 }

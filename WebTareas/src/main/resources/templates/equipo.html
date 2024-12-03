@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipo</title>
+</head>
+<body>
+<h1 th:text="${equipo.nombre}"></h1>
+<table>
+    <tr th:each="trabajador : ${equipo.traabajadores}">
+        <td th:text="${trabajador.nombre}"></td>
+        <td th:text="${trabajador.edad}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Equipo</title>
+</head>
+<body>
+<h1>Editar Equipo</h1>
+
+<form th:action="@{/equipo/edit/{id}(id=${equipo.id})}" th:object="${equipo}" method="post">
+    <table>
+        <tr>
+            <td><label for="nombre">Nombre:></label></td>
+            <td><input id="nombre" type="text" th:field="*{equipo.nombre}"/></td>
+        </tr>
+        <tr>
+            <td><label for="trabajadores">Trabajadores:></label></td>
+            <td>th:each="trabajador : ${equipo.trabajadores}}"</td>
+        </tr>
+        <button>Actualizar Equipo</button>
+    </table>
+</form>
+</body>
+</html>
