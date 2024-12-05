@@ -3,7 +3,7 @@ package org.edgar.webtareas.controller;
 import org.edgar.webtareas.entities.Equipo;
 import org.edgar.webtareas.entities.Trabajador;
 import org.edgar.webtareas.service.EquipoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.edgar.webtareas.service.TrabajadorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class EquipoController {
 
-    private EquipoService equipoService;
+    private final EquipoService equipoService;
+    private final TrabajadorService trabajadorService;
 
-    public EquipoController(EquipoService equipoService) {
+    public EquipoController(EquipoService equipoService, TrabajadorService trabajadorService) {
         this.equipoService = equipoService;
+        this.trabajadorService = trabajadorService;
     }
+
     @GetMapping("/equipo/{equipo_id}")
     public String getEquipo(@PathVariable("equipo_id") Long equipo_id, Model model) {
         /*Equipo equipo = equipoService.findById(equipo_id);
@@ -50,7 +52,7 @@ public class EquipoController {
     }
     @GetMapping("/equipo/edit/{equipo_id}")
     public String getEditEquipo(@PathVariable("equipo_id") Long equipo_id, Model model) {
-        List<Trabajador> trabajadores = equipoService.findAllTrabajadores();
+        List<Trabajador> trabajadores = trabajadorService.findAll();
         model.addAttribute("trabajadores", trabajadores);
         model.addAttribute("equipo", equipoService.findById(equipo_id));
         return "edit_equipo";

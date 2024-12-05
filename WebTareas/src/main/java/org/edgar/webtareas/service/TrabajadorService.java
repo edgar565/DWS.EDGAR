@@ -20,10 +20,13 @@ public class TrabajadorService {
         return trabajadorRepository.findAll();
     }
 
-    public void editTrabajador(Long trabajadorId, String nombre, int edad) {
-        Trabajador trabajador = findById(trabajadorId);
-        trabajador.setNombre(nombre);
-        trabajador.setEdad(edad);
+    public void editTrabajador(Long trabajadorId, Trabajador trabajador) {
+        Trabajador trabajador1 = findById(trabajadorId);
+        trabajador1.setNombre(trabajador.getNombre());
+        trabajador1.setEdad(trabajador.getEdad());
+        trabajadorRepository.save(trabajador1);
+    }
+    public void save(Trabajador trabajador) {
         trabajadorRepository.save(trabajador);
     }
 }

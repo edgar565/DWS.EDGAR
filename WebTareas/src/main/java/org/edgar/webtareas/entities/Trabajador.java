@@ -30,6 +30,6 @@ public class Trabajador {
             joinColumns = @JoinColumn(name = "trabajador_id"),  // Columna que hace referencia al autor
             inverseJoinColumns = @JoinColumn(name = "tarea_id")  // Columna que hace referencia a la editorial
     )
-    private Set<Tareas> tareas = new HashSet<>();  // Relación con editoriales
+    private Set<Tarea> tareas = new HashSet<>();  // Relación con editoriales
 
 }

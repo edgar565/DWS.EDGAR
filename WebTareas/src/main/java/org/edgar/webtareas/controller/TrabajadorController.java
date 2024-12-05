@@ -1,6 +1,7 @@
 package org.edgar.webtareas.controller;
 
 import org.edgar.webtareas.entities.Trabajador;
+import org.edgar.webtareas.service.EquipoService;
 import org.edgar.webtareas.service.TrabajadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,25 @@ import java.util.List;
 @Controller
 public class TrabajadorController {
 
-    @Autowired
-    private TrabajadorService trabajadorService;
+    private final TrabajadorService trabajadorService;
+    private final EquipoService equipoService;
+
+    public TrabajadorController(TrabajadorService trabajadorService, EquipoService equipoService) {
+        this.trabajadorService = trabajadorService;
+        this.equipoService = equipoService;
+    }
 
     @GetMapping("/trabajador/create")
     public String createTrabajador(Model model) {
+        model.addAttribute("equipos", equipoService.findAll());
         model.addAttribute("trabajador", new Trabajador());
         return "create_trabajador";
+    }
+
+    @PostMapping("/trabajador/create")
+    public String createTrabajador(Trabajador trabajador) {
+        trabajadorService.save(trabajador);
+        return "redirect:/trabajadores";
     }
 
     @GetMapping("/trabajadores")
@@ -36,8 +49,14 @@ public class TrabajadorController {
     }
 
     @PostMapping("/trabajador/edit/{trabajador_id}")
-    public String editTrabajador(@PathVariable("trabajador_id") Long trabajador_id, String nombre, int edad) {
-        trabajadorService.editTrabajador(trabajador_id, nombre, edad);
+    public String editTrabajador(@PathVariable("trabajador_id") Long trabajador_id, Trabajador trabajador) {
+        trabajadorService.editTrabajador(trabajador_id, trabajador);
         return "redirect:/trabajador/" + trabajador_id;
+    }
+
+    @GetMapping("/trabajador/{trabajador_id}")
+    public String getTrabajador(@PathVariable("trabajador_id") Long trabajador_id, Model model) {
+        model.addAttribute("trabajador", trabajadorService.findById(trabajador_id));
+        return "trabajador";
     }
 }

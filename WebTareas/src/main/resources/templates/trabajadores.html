@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trabajadores</title>
+</head>
+<body>
+<h1>Trabajadores</h1>
+
+<table>
+    <tr th:each="trabajador : ${trabajadores}">
+    <td> <a th:href="@{/trabajador/{id}(id=${trabajador.id})}" th:text="${trabajador.nombre}"></a> <a th:href="@{/trabajador/edit/{id}(id=${trabajador.id})}">Editar</a> <a th:href="@{/trabajador/delete/{id}(id=${trabajador.id})}">Borrar</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

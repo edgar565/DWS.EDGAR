@@ -12,11 +12,9 @@ import java.util.List;
 public class EquipoService {
 
     private final EquipoRepository equipoRepository;
-    private final TrabajadorRepository trabajadorRepository;
 
-    public EquipoService(EquipoRepository equipoRepository, TrabajadorRepository trabajadorRepository) {
+    public EquipoService(EquipoRepository equipoRepository) {
         this.equipoRepository = equipoRepository;
-        this.trabajadorRepository = trabajadorRepository;
     }
     public void save(Equipo equipo) {
         equipoRepository.save(equipo);
@@ -26,5 +24,12 @@ public class EquipoService {
     }
     public Object findById(Long equipoId) {
         return equipoRepository.findById(equipoId).orElse(null);
+    }
+
+    public void editEquipo(Long equipoId, Equipo equipo) {
+        Equipo equipo1 = equipoRepository.findById(equipoId).orElse(null);
+        equipo1.setNombre(equipo.getNombre());
+        equipo1.setTrabajadores(equipo.getTrabajadores());
+        equipoRepository.save(equipo1);
     }
 }
