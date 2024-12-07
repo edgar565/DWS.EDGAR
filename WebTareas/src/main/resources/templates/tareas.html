@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tareas</title>
+</head>
+<body>
+<h1>Tareas</h1>
+<table>
+    <tr th:each="tarea : ${tareas}">
+        <td> <a th:href="@{/tarea/{id}(id=${tarea.tarea_id})}" th:text="${tarea.nombre}"></a> <br> <a th:href="@{/tarea/edit/{id}(id=${tarea.tarea_id})}">Editar</a> <a th:href="@{/tarea/delete/{id}(id=${tarea.tarea_id})}">Borrar</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

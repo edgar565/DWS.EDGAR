@@ -7,13 +7,13 @@
 <body>
 <h1>Editar Equipo</h1>
 
-<form th:action="@{/equipo/edit/{id}(id=${equipo.id})}" th:object="${equipo}" method="post">
+<form th:action="@{/equipo/edit/{id}(id=${equipo.equipo_id})}" th:object="${equipo}" method="post">
     <label for="nombre">Nombre:></label>
     <input id="nombre" type="text" th:field="*{equipo.nombre}"/>
     <br>
     <label for="trabajadores">Trabajadores:></label>
     <select id="trabajadores" name="trabajadores" th:field="*{trabajadores.nombre}"></select>
-        <option th:each="trabajador : ${trabajadores}" th:value="${trabajador.id}" th:text="${trabajador.nombre}"></option>
+        <option th:each="trabajador : ${trabajadores}" th:value="${trabajador.trabajador_id}" th:text="${trabajador.nombre}"></option>
     <br>
     <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
 </form>

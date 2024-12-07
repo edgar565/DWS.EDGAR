@@ -50,7 +50,7 @@ public class TareasController {
     }
 
     @PostMapping("/tarea/edit/{tarea_id}")
-    public String editTarea(@PathVariable("tarea_id") Long tarea_id, Trabajador tarea) {
+    public String editTarea(@PathVariable("tarea_id") Long tarea_id, Tarea tarea) {
         tareasService.editTarea(tarea_id, tarea);
         return "redirect:/tarea/" + tarea_id;
     }

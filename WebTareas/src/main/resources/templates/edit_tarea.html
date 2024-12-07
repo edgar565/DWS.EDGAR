@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarea</title>
+</head>
+<body>
+<h1>Editar Tarea</h1>
+
+<form th:action="@{/tarea/edit/{id}(id=${tarea.tarea_id})}" th:object="${tarea}" method="post">
+    <label for="nombre">Nombre:></label>
+    <input id="nombre" type="text" th:field="*{tarea.nombre}"/>
+    <label for="descripcion">Descripcion:></label>
+    <input id="descripcion" type="text" th:field="*{tarea.descripcion}"/>
+    <label for="tipo">Tipo:></label>
+    <select id="tipo" name="tipo" th:field="*{tarea.tipo}">
+        <option value="mejora">Mejora</option>
+        <option value="bug">Bug</option>
+        <option value="refactorización">Refactorización</option>
+    </select>
+    <label for="estado">Estado:></label>
+    <select id="estado" name="estado" th:field="*{tarea.estado}">
+        <option value="abierta">abierta</option>
+        <option value="en progreso">En progreso</option>
+        <option value="cerrada">Cerrada</option>
+    </select>
+    <label for="fechaDeApertura">FechaDeApertura:></label>
+    <input id="fechaDeApertura" type="date" th:field="*{tarea.fechaApertura}"/>
+    <label for="fechaDeCierre">FechaDeCierre:></label>
+    <input id="fechaDeCierre" type="date" th:field="*{tarea.fechaCierre}"/>
+    <br>
+    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+</form>
+</body>
+</html>

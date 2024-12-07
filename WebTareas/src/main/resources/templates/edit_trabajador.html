@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Edit trabajador</h1>
-<form th:action="@{/trabajador/edit/{id}(id=${trabajador.id})}" th:object="${trabajador}" method="post">
+<form th:action="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}" th:object="${trabajador}" method="post">
     <label for="nombre">Nombre:></label>
     <input id="nombre" type="text" th:field="*{trabajador.nombre}"/>
     <label for="edad">Edad:></label>

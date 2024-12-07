@@ -8,7 +8,7 @@
 <h1>Equipos</h1>
 <table>
     <tr th:each="equipo : ${equipos}">
-        <td><a th:href="@{/equipo/{id}(id=${equipo.id})}" th:text="${equipo.nombre}"></a> <a th:href="@{/equipo/edit/{id}(id=${equipo.id})}">Editar</a> <a th:href="@{/equipo/delete/{id}(id=${equipo.id})}">Borrar</a> </td>
+        <td><a th:href="@{/equipo/{id}(id=${equipo.equipo_id})}" th:text="${equipo.nombre}"></a> <br> <a th:href="@{/equipo/edit/{id}(id=${equipo.equipo_id})}">Editar</a> <a th:href="@{/equipo/delete/{id}(id=${equipo.equipo_id})}">Borrar</a> </td>
     </tr>
 </table>
 
