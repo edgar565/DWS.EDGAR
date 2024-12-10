@@ -3,17 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Tarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        h2 {
+            color: #007bff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .info-item {
+            background-color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .trabajadores-list {
+            padding: 0;
+            margin: 10px 0;
+        }
+        .trabajadores-list li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .trabajadores-list a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .trabajadores-list a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${tarea.nombre}"></h1>
-<ul>
-    <li th:text="${tarea.descripcion}"></li>
-    <li th:text="${tarea.tipo}"></li>
-    <li th:text="${tarea.estado}"></li>
-    <li th:text="${tarea.fechaApertura}"></li>
-    <li th:text="${tarea.fechaCierre}"></li>
-    <li th:text="${tarea.trabajadores}"></li>
 
+<h1 th:text="${nombre}"></h1>
+
+<div class="info-item">
+    <ul>
+        <li><strong>Descripción:</strong> <span th:text="${descripcion}"></span></li>
+        <li><strong>Tipo:</strong> <span th:text="${tipo}"></span></li>
+        <li><strong>Estado:</strong> <span th:text="${estado}"></span></li>
+        <li><strong>Fecha de Apertura:</strong> <span th:text="${fechaApertura}"></span></li>
+        <li><strong>Fecha de Cierre:</strong> <span th:text="${fechaCierre}"></span></li>
+    </ul>
+</div>
+
+<h2>Trabajadores Asignados</h2>
+
+<ul class="trabajadores-list">
+    <li th:each="trabajador : ${trabajadores}">
+        <a th:href="@{/trabajador/{id}(id=${trabajador.trabajador_id})}" th:text="${trabajador.nombre}"></a>
+    </li>
 </ul>
+
 </body>
 </html>

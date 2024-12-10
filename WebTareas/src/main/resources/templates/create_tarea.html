@@ -3,36 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Tarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"], input[type="reset"] {
+            width: auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Crear Tarea</h1>
-<form th:action="@{/tarea/create}" th:object="${tarea}" method="post">
-    <label for="nombre">Nombre:></label>
-    <input id="nombre" type="text" th:field="*{nombre}"/>
-    <label for="descripcion">Descripcion:></label>
-    <input id="descripcion" type="text" th:field="*{descripcion}"/>
-    <label for="tipo">Tipo:></label>
-    <select id="tipo" name="tipo" th:field="*{tipo}">
-        <option value="mejora">Mejora</option>
-        <option value="bug">Bug</option>
-        <option value="refactorización">Refactorización</option>
-    </select>
-    <label for="estado">Estado:></label>
-    <select id="estado" name="estado" th:field="*{estado}">
-        <option value="abierta">abierta</option>
-        <option value="en progreso">En progreso</option>
-        <option value="cerrada">Cerrada</option>
-    </select>
-    <label for="fechaDeApertura">FechaDeApertura:></label>
-    <input id="fechaDeApertura" type="date" th:field="*{fechaApertura}"/>
-    <label for="fechaDeCierre">FechaDeCierre:></label>
-    <input id="fechaDeCierre" type="date" th:field="*{fechaCierre}"/>
-    <label for="trabajador">Trabajador:></label>
-    <select id="trabajador" name="trabajador" th:field="*{trabajador.nombre}">
-        <option th:each="trabajador : ${trabajadores}" th:value="${trabajador}" th:text="${trabajador.nombre}"></option>
-    </select>
-    <br>
-    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-</form>
+
+<div class="form-container">
+    <form th:action="@{/tarea/create}" th:object="${tarea}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" th:field="*{nombre}" />
+
+        <label for="descripcion">Descripción:</label>
+        <input id="descripcion" type="text" th:field="*{descripcion}" />
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" th:field="*{tipo}">
+            <option value="mejora">Mejora</option>
+            <option value="bug">Bug</option>
+            <option value="refactorización">Refactorización</option>
+        </select>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" th:field="*{estado}">
+            <option value="abierta">Abierta</option>
+            <option value="en progreso">En progreso</option>
+            <option value="cerrada">Cerrada</option>
+        </select>
+
+        <label for="fechaDeApertura">Fecha de Apertura:</label>
+        <input id="fechaDeApertura" type="date" th:field="*{fechaApertura}" />
+
+        <label for="fechaDeCierre">Fecha de Cierre:</label>
+        <input id="fechaDeCierre" type="date" th:field="*{fechaCierre}" />
+
+        <label for="trabajadores">Trabajadores:</label>
+        <select id="trabajadores" name="trabajadores" th:field="*{trabajadores}" multiple>
+            <option th:each="trabajador : ${trabajadores}" th:value="${trabajador.trabajador_id}" th:text="${trabajador.nombre}"></option>
+        </select>
+
+        <input type="submit" value="Crear" />
+        <input type="reset" value="Resetear" />
+    </form>
+</div>
+
 </body>
 </html>

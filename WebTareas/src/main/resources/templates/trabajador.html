@@ -3,14 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Trabajador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        strong {
+            color: #007bff;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${trabajador.nombre}"></h1>
+
+<h1>Detalles del Trabajador</h1>
+
+<!-- Información del trabajador -->
 <ul>
-    <li th:text="${trabajador.edad}"></li>
+    <li><strong>Nombre:</strong> <span th:text="${trabajador.nombre}"></span></li>
+    <li><strong>Edad:</strong> <span th:text="${trabajador.edad}"></span></li>
+    <li><strong>Equipo:</strong> <span th:text="${trabajador.equipo.nombre}"></span></li>
 </ul>
 
-<a th:href="@{/}"><p>INDEX</p></a>
+<h2>Tareas Asignadas</h2>
+
+<!-- Lista de tareas asignadas al trabajador -->
+<ul>
+    <li th:each="tarea : ${tareas}">
+        <a th:href="@{/tarea/{id}(id=${tarea.tarea_id})}" th:text="${tarea.nombre}"></a>
+    </li>
+</ul>
+
+<!-- Enlace para volver al índice -->
+<a th:href="@{/}"><p>Volver al Índice</p></a>
 
 </body>
 </html>

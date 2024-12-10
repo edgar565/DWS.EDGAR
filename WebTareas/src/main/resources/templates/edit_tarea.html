@@ -3,33 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Tarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: center;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+        .form-actions input[type="submit"]:active, .form-actions input[type="reset"]:active {
+            background-color: #003d7a;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Editar Tarea</h1>
 
+<!-- Formulario para editar una tarea -->
 <form th:action="@{/tarea/edit/{id}(id=${tarea.tarea_id})}" th:object="${tarea}" method="post">
-    <label for="nombre">Nombre:></label>
-    <input id="nombre" type="text" th:field="*{tarea.nombre}"/>
-    <label for="descripcion">Descripcion:></label>
-    <input id="descripcion" type="text" th:field="*{tarea.descripcion}"/>
-    <label for="tipo">Tipo:></label>
+
+    <!-- Campo de nombre -->
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" type="text" th:field="*{tarea.nombre}" placeholder="Introduce el nombre de la tarea"/>
+
+    <!-- Campo de descripción -->
+    <label for="descripcion">Descripción:</label>
+    <input id="descripcion" type="text" th:field="*{tarea.descripcion}" placeholder="Introduce la descripción de la tarea"/>
+
+    <!-- Selección de tipo -->
+    <label for="tipo">Tipo:</label>
     <select id="tipo" name="tipo" th:field="*{tarea.tipo}">
-        <option value="mejora">Mejora</option>
-        <option value="bug">Bug</option>
-        <option value="refactorización">Refactorización</option>
+        <option value="mejora" th:selected="*{tipo == 'mejora'}">Mejora</option>
+        <option value="bug" th:selected="*{tipo == 'bug'}">Bug</option>
+        <option value="refactorización" th:selected="*{tipo == 'refactorización'}">Refactorización</option>
     </select>
-    <label for="estado">Estado:></label>
+
+    <!-- Selección de estado -->
+    <label for="estado">Estado:</label>
     <select id="estado" name="estado" th:field="*{tarea.estado}">
-        <option value="abierta">abierta</option>
-        <option value="en progreso">En progreso</option>
-        <option value="cerrada">Cerrada</option>
+        <option value="abierta" th:selected="*{estado == 'abierta'}">Abierta</option>
+        <option value="en progreso" th:selected="*{estado == 'en progreso'}">En Progreso</option>
+        <option value="cerrada" th:selected="*{estado == 'cerrada'}">Cerrada</option>
     </select>
-    <label for="fechaDeApertura">FechaDeApertura:></label>
+
+    <!-- Campo de fecha de apertura -->
+    <label for="fechaDeApertura">Fecha de Apertura:</label>
     <input id="fechaDeApertura" type="date" th:field="*{tarea.fechaApertura}"/>
-    <label for="fechaDeCierre">FechaDeCierre:></label>
+
+    <!-- Campo de fecha de cierre -->
+    <label for="fechaDeCierre">Fecha de Cierre:</label>
     <input id="fechaDeCierre" type="date" th:field="*{tarea.fechaCierre}"/>
-    <br>
-    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+
+    <!-- Botones de acción -->
+    <div class="form-actions">
+        <input type="submit" value="Guardar Cambios" />
+        <input type="reset" value="Resetear" />
+    </div>
 </form>
+
 </body>
 </html>

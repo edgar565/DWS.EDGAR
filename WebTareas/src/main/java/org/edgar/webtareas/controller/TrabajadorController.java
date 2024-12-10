@@ -30,7 +30,8 @@ public class TrabajadorController {
     }
 
     @PostMapping("/trabajador/create")
-    public String createTrabajador(Trabajador trabajador) {
+    public String createTrabajador(Trabajador trabajador,  @RequestParam("equipo") Long equipoId) {
+        trabajador.setEquipo(equipoService.findById(equipoId));
         trabajadorService.save(trabajador);
         return "redirect:/trabajadores";
     }

@@ -2,15 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trabajadores</title>
+    <title>Lista de Trabajadores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td a {
+            padding: 5px 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        td a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        td a:active {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>Trabajadores</h1>
 
+<h1>Lista de Trabajadores</h1>
+
+<!-- Tabla con la lista de trabajadores -->
 <table>
-    <tr th:each="trabajador : ${trabajadores}">
-    <td> <a th:href="@{/trabajador/{id}(id=${trabajador.trabajador_id})}" th:text="${trabajador.nombre}"></a>  <a th:href="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}">Editar</a> <a th:href="@{/trabajador/delete/{id}(id=${trabajador.trabajador_id})}">Borrar</a></td>
+    <thead>
+    <tr>
+        <th>Nombre del Trabajador</th>
+        <th>Acciones</th>
     </tr>
+    </thead>
+    <tbody>
+    <!-- Aquí iteramos sobre la lista de trabajadores -->
+    <tr th:each="trabajador : ${trabajadores}">
+        <td>
+            <!-- Enlace al perfil del trabajador -->
+            <a th:href="@{/trabajador/{id}(id=${trabajador.trabajador_id})}" th:text="${trabajador.nombre}"></a>
+        </td>
+        <td>
+            <!-- Enlaces para editar o eliminar al trabajador -->
+            <a th:href="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}">Editar</a>
+            <a th:href="@{/trabajador/delete/{id}(id=${trabajador.trabajador_id})}">Borrar</a>
+        </td>
+    </tr>
+    </tbody>
 </table>
 
 </body>

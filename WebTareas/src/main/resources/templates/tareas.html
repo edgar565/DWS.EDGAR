@@ -2,14 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tareas</title>
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: color 0.3s;
+        }
+        td a:hover {
+            color: #0056b3;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body>
-<h1>Tareas</h1>
+
+<h1>Lista de Tareas</h1>
+
 <table>
-    <tr th:each="tarea : ${tareas}">
-        <td> <a th:href="@{/tarea/{id}(id=${tarea.tarea_id})}" th:text="${tarea.nombre}"></a>  <a th:href="@{/tarea/edit/{id}(id=${tarea.tarea_id})}">Editar</a> <a th:href="@{/tarea/delete/{id}(id=${tarea.tarea_id})}">Borrar</a></td>
+    <thead>
+    <tr>
+        <th>Nombre de la Tarea</th>
+        <th>Acciones</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tarea : ${tareas}">
+        <td>
+            <a th:href="@{/tarea/{id}(id=${tarea.tarea_id})}" th:text="${tarea.nombre}"></a>
+        </td>
+        <td>
+            <a th:href="@{/tarea/edit/{id}(id=${tarea.tarea_id})}">Editar</a>
+            <a th:href="@{/tarea/delete/{id}(id=${tarea.tarea_id})}">Borrar</a>
+        </td>
+    </tr>
+    </tbody>
 </table>
 
 </body>

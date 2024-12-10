@@ -9,8 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class TareasController {
@@ -25,7 +29,7 @@ public class TareasController {
 
     @GetMapping("/tarea/create")
     public String createTarea(Model model) {
-        model.addAttribute("equipos", trabajadorService.findAll());
+        model.addAttribute("trabajadores", trabajadorService.findAll());
         model.addAttribute("tarea", new Tarea());
         return "create_tarea";
     }
@@ -46,7 +50,7 @@ public class TareasController {
     @GetMapping("/tarea/edit/{tarea_id}")
     public String getEditTarea(@PathVariable("tarea_id") Long tarea_id, Model model) {
         model.addAttribute("tarea", tareasService.findById(tarea_id));
-        return "edit_tareas";
+        return "edit_tarea";
     }
 
     @PostMapping("/tarea/edit/{tarea_id}")

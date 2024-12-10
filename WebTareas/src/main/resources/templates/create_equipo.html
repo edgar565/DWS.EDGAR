@@ -2,15 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Equipo</title>
+    <title>Crear Equipo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"], input[type="reset"] {
+            width: auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Crear Equipo</h1>
-<form th:action="@{/equipo/create}" th:object="${equipo}" method="post">
-    <label for="nombre">Nombre:></label>
-    <input id="nombre" type="text" th:field="*{nombre}"/>
-    <br>
-    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-</form>
+
+<div class="form-container">
+    <form th:action="@{/equipo/create}" method="post">
+        <label for="nombre">Nombre del Equipo:</label>
+        <input id="nombre" type="text" name="nombre" />
+
+        <input type="submit" value="Crear" />
+        <input type="reset" value="Resetear" />
+    </form>
+</div>
+
 </body>
 </html>

@@ -22,7 +22,7 @@ public class EquipoService {
     public List<Equipo> findAll() {
         return equipoRepository.findAll();
     }
-    public Object findById(Long equipoId) {
+    public Equipo findById(Long equipoId) {
         return equipoRepository.findById(equipoId).orElse(null);
     }
 

@@ -2,17 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit trabajador</title>
+    <title>Editar Trabajador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"], input[type="reset"] {
+            width: auto;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>Edit trabajador</h1>
-<form th:action="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}" th:object="${trabajador}" method="post">
-    <label for="nombre">Nombre:></label>
-    <input id="nombre" type="text" th:field="*{trabajador.nombre}"/>
-    <label for="edad">Edad:></label>
-    <input id="edad" type="text" th:field="*{trabajador.edad}"/>
-    <br>
-    <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-</form>
+
+<h1>Editar Trabajador</h1>
+
+<div class="form-container">
+    <form th:action="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}" th:object="${trabajador}" method="post">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" th:field="*{nombre}" />
+
+        <label for="edad">Edad:</label>
+        <input id="edad" type="text" th:field="*{edad}" />
+
+        <label for="equipo">Equipo:</label>
+        <select id="equipo" name="equipo" th:field="*{equipo}">
+            <option th:each="equipo : ${equipos}" th:value="${equipo.equipo_id}" th:text="${equipo.nombre}"></option>
+        </select>
+
+        <input type="submit" value="Guardar" />
+        <input type="reset" value="Resetear" />
+    </form>
+</div>
+
 </body>
 </html>

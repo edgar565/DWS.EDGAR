@@ -2,15 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Equipo</title>
+    <title>Detalles del Equipo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        td a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        td a:active {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${equipo.nombre}"></h1>
-<button><a th:href="@{/trabajador/create}">Create Trabajador</a></button>
+
+<h1 th:text="${equipo.nombre}">Detalles del Equipo</h1>
+
+<!-- Botón para crear un nuevo trabajador -->
+<button><a th:href="@{/trabajador/create}">Crear Trabajador</a></button>
+
+<!-- Tabla con los trabajadores del equipo -->
 <table>
-    <tr th:each="trabajador : ${equipo.trabajadores}">
-        <td><a th:href="@{/trabajador/{id}(id=${trabajador.trabajador_id})}" th:text="${trabajador.nombre}"></a> <a th:href="@{/trabajador/edit/{id}(id=${trabajador.id})}">Editar</a> <a th:href="@{/trabajador/delete/{id}(id=${trabajador.id})}">Borrar</a></td>
+    <thead>
+    <tr>
+        <th>Nombre del Trabajador</th>
+        <th>Acciones</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trabajador : ${equipo.trabajadores}">
+        <td>
+            <a th:href="@{/trabajador/{id}(id=${trabajador.trabajador_id})}" th:text="${trabajador.nombre}"></a>
+        </td>
+        <td>
+            <a th:href="@{/trabajador/edit/{id}(id=${trabajador.trabajador_id})}">Editar</a>
+            <a th:href="@{/trabajador/delete/{id}(id=${trabajador.trabajador_id})}"
+               onclick="return confirm('¿Estás seguro de que deseas borrar este trabajador?')">Borrar</a>
+        </td>
+    </tr>
+    </tbody>
 </table>
 
 </body>
