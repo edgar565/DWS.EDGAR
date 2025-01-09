@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Nombre</title>
+</head>
+<body>
+<div id="nameContainer">
+    <h1>Mi Nombre</h1>
+    <p id="name">Cargando...</p>
+</div>
+<script>
+    // Solicita el nombre del usuario desde el servidor
+    async function fetchName() {
+        try {
+            const response = await fetch('/api/name');
+            if (response.ok) {
+                const name = await response.text();
+                document.getElementById('name').textContent = name;
+            } else if (response.status === 302) {
+                window.location.href = '/login.html';
+            } else {
+                document.getElementById('name').textContent = "No se pudo obtener el nombre.";
+            }
+        } catch (error) {
+            console.error('Error al obtener el nombre:', error);
+            document.getElementById('name').textContent = "Error al cargar el nombre.";
+        }
+    }
+
+    // Llamar a la función al cargar la página
+    document.addEventListener('DOMContentLoaded', fetchName);
+</script>
+</body>
+</html>

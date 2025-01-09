@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Log in</h1>
+    <form onsubmit="checkUser(); return false;" id="loginForm" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit" form="loginForm">Log in</button>
+    </form>
+</div>
+<div id="counter">
+    <h1>Counter</h1>
+    <p id="counterValue">0</p>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>
