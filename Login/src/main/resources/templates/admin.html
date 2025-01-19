@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zona de Administrador</title>
+</head>
+<body>
+<h1>Zona Administrativa</h1>
+<p>Hola <strong th:text="${username}"></strong>. Tus roles son:</p>
+<ul>
+    <li th:each="role : ${roles}" th:text="${role}"></li>
+</ul>
+<a th:href="@{/logout}">Cerrar Sesión</a>
+</body>
+</html>
