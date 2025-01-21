@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Inicio</title>
+    <title>Inicio - Calculadora Web</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body>
-<h1>Bienvenido a la Calculadora Web</h1>
-<ul>
-    <li><a href="/suma/10/20">Suma 10 + 20</a></li>
-    <li><a href="/division/10/0">División 10 / 0</a></li>
-    <li><a href="/factorial/101">Factorial de 101</a></li>
-    <li><a href="/raiz/16">Raíz cuadrada</a></li>
-</ul>
+<body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+<div class="container text-center">
+    <h1 class="display-4 fw-bold mb-4">Bienvenido a la Calculadora Web</h1>
+    <p class="lead text-muted">Explora las diferentes operaciones matemáticas y aprende cómo gestionamos errores HTTP.</p>
+
+    <div class="mt-4">
+        <a th:href="${'/suma/10/20'}" class="btn btn-primary btn-lg mx-2">
+            <i class="bi bi-plus-circle"></i> Probar Suma
+        </a>
+        <a th:href="${'/division/10/0'}" class="btn btn-danger btn-lg mx-2">
+            <i class="bi bi-slash-circle"></i> Probar División por 0
+        </a>
+        <a th:href="${'/factorial/5'}" class="btn btn-success btn-lg mx-2">
+            <i class="bi bi-exclamation-circle"></i> Probar Factorial
+        </a>
+        <a th:href="${'/error/404'}" class="btn btn-warning btn-lg mx-2">
+            <i class="bi bi-exclamation-triangle"></i> Probar ERROR 404
+        </a>
+    </div>
+</div>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
