@@ -14,31 +14,48 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll().anyRequest().authenticated()).formLogin(login -> login
-                .loginPage("/login")
-                .successHandler((request, response, authentication) -> {
-                    authentication.getAuthorities().forEach(authority -> {
-                        try {
-                            if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                                response.sendRedirect("/admin");
-                            } else {
-                                response.sendRedirect("/private");
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-                })
-                .permitAll()
-        ).logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll());
+
+        http.authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .successHandler(((request, response, authentication) -> {
+                            authentication.getAuthorities().forEach(authority -> {
+                                try {
+                                    if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                                        response.sendRedirect("/admin");
+                                    } else {
+                                        response.sendRedirect("/private");
+                                    }
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+                        }))
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .permitAll()
+                );
         return http.build();
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
         return new InMemoryUserDetailsManager(
-                User.withUsername("edgar").password(passwordEncoder().encode("12345")).roles("USER").build()
-                , User.withUsername("admin").password(passwordEncoder().encode("admin")).roles("ADMIN").build()
+                User.withUsername("user")
+                        .password(passwordEncoder().encode("12345"))
+                        .roles("USER")
+                        .build(),
+                User.withUsername("admin")
+                        .password(passwordEncoder().encode("admin"))
+                        .roles("ADMIN")
+                        .build()
         );
     }
 

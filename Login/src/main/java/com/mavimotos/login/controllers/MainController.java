@@ -20,6 +20,7 @@ public class MainController {
                 SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         model.addAttribute("username", username);
+        model.addAttribute("roles", authentication.getAuthorities());
         return "private";
     }
 
@@ -35,5 +36,4 @@ public class MainController {
     public String login() {
         return "login";
     }
-
 }
